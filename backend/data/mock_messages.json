@@ -1,0 +1,498 @@
+[
+  {
+    "id": "msg-001",
+    "type": "pacs.008.001.08",
+    "title": "FedNow Customer Credit Transfer",
+    "description": "FI-to-FI customer credit transfer via FedNow instant payments network. Transfers $2,500 from sender to receiver with full structured data.",
+    "network": "FedNow",
+    "direction": "outbound",
+    "category": "Credit Transfer",
+    "status": "settled",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08\">\n  <FIToFICstmrCdtTrf>\n    <GrpHdr>\n      <MsgId>FNOW-20260528-CTR-001</MsgId>\n      <CreDtTm>2026-05-28T09:30:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <SttlmInf>\n        <SttlmMtd>CLRG</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <CdtTrfTxInf>\n      <PmtId>\n        <InstrId>INSTR-20260528-001</InstrId>\n        <EndToEndId>E2E-FNOW-2026052800001</EndToEndId>\n        <TxId>TXN-FNOW-20260528-001</TxId>\n        <UETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</UETR>\n      </PmtId>\n      <IntrBkSttlmAmt Ccy=\"USD\">2500.00</IntrBkSttlmAmt>\n      <IntrBkSttlmDt>2026-05-28</IntrBkSttlmDt>\n      <InstdAmt Ccy=\"USD\">2500.00</InstdAmt>\n      <ChrgBr>SHAR</ChrgBr>\n      <Dbtr>\n        <Nm>Alice Richardson</Nm>\n        <PstlAdr>\n          <StrtNm>1200 Market Street</StrtNm>\n          <TwnNm>Philadelphia</TwnNm>\n          <CtrySubDvsn>PA</CtrySubDvsn>\n          <PstCd>19107</PstCd>\n          <Ctry>US</Ctry>\n        </PstlAdr>\n      </Dbtr>\n      <DbtrAcct>\n        <Id><Othr><Id>445566778899</Id></Othr></Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>CHASUS33</BICFI>\n          <Nm>JPMorgan Chase Bank</Nm>\n        </FinInstnId>\n      </DbtrAgt>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>BOFAUS3N</BICFI>\n          <Nm>Bank of America</Nm>\n        </FinInstnId>\n      </CdtrAgt>\n      <Cdtr>\n        <Nm>Bob Martinez</Nm>\n        <PstlAdr>\n          <StrtNm>500 Boylston Street</StrtNm>\n          <TwnNm>Boston</TwnNm>\n          <CtrySubDvsn>MA</CtrySubDvsn>\n          <PstCd>02116</PstCd>\n          <Ctry>US</Ctry>\n        </PstlAdr>\n      </Cdtr>\n      <CdtrAcct>\n        <Id><Othr><Id>112233445566</Id></Othr></Id>\n      </CdtrAcct>\n      <Purp>\n        <Cd>SUPP</Cd>\n      </Purp>\n      <RmtInf>\n        <Ustrd>Invoice INV-2026-0528 - Consulting Services May 2026</Ustrd>\n      </RmtInf>\n    </CdtTrfTxInf>\n  </FIToFICstmrCdtTrf>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "FIToFICstmrCdtTrf",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-20260528-CTR-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T09:30:00Z"},
+                {"tag": "NbOfTxs", "value": "1"},
+                {
+                  "tag": "SttlmInf",
+                  "children": [
+                    {"tag": "SttlmMtd", "value": "CLRG"}
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "CdtTrfTxInf",
+              "children": [
+                {
+                  "tag": "PmtId",
+                  "children": [
+                    {"tag": "InstrId", "value": "INSTR-20260528-001"},
+                    {"tag": "EndToEndId", "value": "E2E-FNOW-2026052800001"},
+                    {"tag": "TxId", "value": "TXN-FNOW-20260528-001"},
+                    {"tag": "UETR", "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"}
+                  ]
+                },
+                {"tag": "IntrBkSttlmAmt", "value": "2500.00", "attributes": {"Ccy": "USD"}},
+                {"tag": "IntrBkSttlmDt", "value": "2026-05-28"},
+                {"tag": "InstdAmt", "value": "2500.00", "attributes": {"Ccy": "USD"}},
+                {"tag": "ChrgBr", "value": "SHAR"},
+                {
+                  "tag": "Dbtr",
+                  "children": [
+                    {"tag": "Nm", "value": "Alice Richardson"},
+                    {
+                      "tag": "PstlAdr",
+                      "children": [
+                        {"tag": "StrtNm", "value": "1200 Market Street"},
+                        {"tag": "TwnNm", "value": "Philadelphia"},
+                        {"tag": "CtrySubDvsn", "value": "PA"},
+                        {"tag": "PstCd", "value": "19107"},
+                        {"tag": "Ctry", "value": "US"}
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "DbtrAcct",
+                  "children": [
+                    {"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "445566778899"}]}]}
+                  ]
+                },
+                {
+                  "tag": "DbtrAgt",
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {"tag": "BICFI", "value": "CHASUS33"},
+                        {"tag": "Nm", "value": "JPMorgan Chase Bank"}
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "CdtrAgt",
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {"tag": "BICFI", "value": "BOFAUS3N"},
+                        {"tag": "Nm", "value": "Bank of America"}
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "Cdtr",
+                  "children": [
+                    {"tag": "Nm", "value": "Bob Martinez"},
+                    {
+                      "tag": "PstlAdr",
+                      "children": [
+                        {"tag": "StrtNm", "value": "500 Boylston Street"},
+                        {"tag": "TwnNm", "value": "Boston"},
+                        {"tag": "CtrySubDvsn", "value": "MA"},
+                        {"tag": "PstCd", "value": "02116"},
+                        {"tag": "Ctry", "value": "US"}
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "CdtrAcct",
+                  "children": [
+                    {"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "112233445566"}]}]}
+                  ]
+                },
+                {"tag": "Purp", "children": [{"tag": "Cd", "value": "SUPP"}]},
+                {
+                  "tag": "RmtInf",
+                  "children": [
+                    {"tag": "Ustrd", "value": "Invoice INV-2026-0528 - Consulting Services May 2026"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-002",
+    "type": "pacs.002.001.10",
+    "title": "FedNow Payment Accept (ACTC)",
+    "description": "Payment status report confirming acceptance of a FedNow credit transfer by the receiving financial institution.",
+    "network": "FedNow",
+    "direction": "inbound",
+    "category": "Status Report",
+    "status": "accepted",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10\">\n  <FIToFIPmtStsRpt>\n    <GrpHdr>\n      <MsgId>FNOW-STS-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T09:30:05Z</CreDtTm>\n    </GrpHdr>\n    <TxInfAndSts>\n      <OrgnlInstrId>INSTR-20260528-001</OrgnlInstrId>\n      <OrgnlEndToEndId>E2E-FNOW-2026052800001</OrgnlEndToEndId>\n      <OrgnlUETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</OrgnlUETR>\n      <TxSts>ACTC</TxSts>\n      <AccptncDtTm>2026-05-28T09:30:04Z</AccptncDtTm>\n      <InstgAgt>\n        <FinInstnId>\n          <BICFI>BOFAUS3N</BICFI>\n        </FinInstnId>\n      </InstgAgt>\n      <InstdAgt>\n        <FinInstnId>\n          <BICFI>CHASUS33</BICFI>\n        </FinInstnId>\n      </InstdAgt>\n    </TxInfAndSts>\n  </FIToFIPmtStsRpt>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "FIToFIPmtStsRpt",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-STS-20260528-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T09:30:05Z"}
+              ]
+            },
+            {
+              "tag": "TxInfAndSts",
+              "children": [
+                {"tag": "OrgnlInstrId", "value": "INSTR-20260528-001"},
+                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800001"},
+                {"tag": "OrgnlUETR", "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"},
+                {"tag": "TxSts", "value": "ACTC"},
+                {"tag": "AccptncDtTm", "value": "2026-05-28T09:30:04Z"},
+                {
+                  "tag": "InstgAgt",
+                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "BOFAUS3N"}]}]
+                },
+                {
+                  "tag": "InstdAgt",
+                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "CHASUS33"}]}]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-003",
+    "type": "pacs.002.001.10",
+    "title": "FedNow Payment Reject (RJCT)",
+    "description": "Payment status report indicating rejection due to closed beneficiary account (AC04). Demonstrates mandatory StsRsnInf block.",
+    "network": "FedNow",
+    "direction": "inbound",
+    "category": "Status Report",
+    "status": "rejected",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10\">\n  <FIToFIPmtStsRpt>\n    <GrpHdr>\n      <MsgId>FNOW-STS-20260528-002</MsgId>\n      <CreDtTm>2026-05-28T10:15:00Z</CreDtTm>\n    </GrpHdr>\n    <TxInfAndSts>\n      <OrgnlInstrId>INSTR-20260528-002</OrgnlInstrId>\n      <OrgnlEndToEndId>E2E-FNOW-2026052800002</OrgnlEndToEndId>\n      <OrgnlUETR>a1b2c3d4-5e6f-7a8b-9c0d-e1f2a3b4c5d6</OrgnlUETR>\n      <TxSts>RJCT</TxSts>\n      <StsRsnInf>\n        <Rsn>\n          <Cd>AC04</Cd>\n        </Rsn>\n        <AddtlInf>Account has been closed at receiving institution</AddtlInf>\n      </StsRsnInf>\n      <InstgAgt>\n        <FinInstnId>\n          <BICFI>WFBIUS6S</BICFI>\n        </FinInstnId>\n      </InstgAgt>\n      <InstdAgt>\n        <FinInstnId>\n          <BICFI>CITIUS33</BICFI>\n        </FinInstnId>\n      </InstdAgt>\n    </TxInfAndSts>\n  </FIToFIPmtStsRpt>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "FIToFIPmtStsRpt",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-STS-20260528-002"},
+                {"tag": "CreDtTm", "value": "2026-05-28T10:15:00Z"}
+              ]
+            },
+            {
+              "tag": "TxInfAndSts",
+              "children": [
+                {"tag": "OrgnlInstrId", "value": "INSTR-20260528-002"},
+                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800002"},
+                {"tag": "OrgnlUETR", "value": "a1b2c3d4-5e6f-7a8b-9c0d-e1f2a3b4c5d6"},
+                {"tag": "TxSts", "value": "RJCT"},
+                {
+                  "tag": "StsRsnInf",
+                  "children": [
+                    {"tag": "Rsn", "children": [{"tag": "Cd", "value": "AC04"}]},
+                    {"tag": "AddtlInf", "value": "Account has been closed at receiving institution"}
+                  ]
+                },
+                {
+                  "tag": "InstgAgt",
+                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "WFBIUS6S"}]}]
+                },
+                {
+                  "tag": "InstdAgt",
+                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "CITIUS33"}]}]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-004",
+    "type": "pain.001.001.03",
+    "title": "SEPA Credit Transfer Initiation",
+    "description": "Customer-to-bank payment initiation for a EUR 1,850 SEPA credit transfer from Germany to France. Demonstrates the pain.001 3-level hierarchy.",
+    "network": "SEPA",
+    "direction": "outbound",
+    "category": "Payment Initiation",
+    "status": "pending",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03\">\n  <CstmrCdtTrfInitn>\n    <GrpHdr>\n      <MsgId>SEPA-INIT-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T08:00:00</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>1850.00</CtrlSum>\n      <InitgPty>\n        <Nm>Müller Technologies GmbH</Nm>\n        <Id>\n          <OrgId>\n            <Othr>\n              <Id>DE123456789</Id>\n              <SchmeNm>\n                <Cd>CUST</Cd>\n              </SchmeNm>\n            </Othr>\n          </OrgId>\n        </Id>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>PMTINF-SEPA-001</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>1850.00</CtrlSum>\n      <PmtTpInf>\n        <SvcLvl>\n          <Cd>SEPA</Cd>\n        </SvcLvl>\n      </PmtTpInf>\n      <ReqdExctnDt>2026-05-29</ReqdExctnDt>\n      <Dbtr>\n        <Nm>Müller Technologies GmbH</Nm>\n        <PstlAdr>\n          <Ctry>DE</Ctry>\n          <AdrLine>Friedrichstrasse 100, 10117 Berlin</AdrLine>\n        </PstlAdr>\n      </Dbtr>\n      <DbtrAcct>\n        <Id>\n          <IBAN>DE89370400440532013000</IBAN>\n        </Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BIC>COBADEFFXXX</BIC>\n        </FinInstnId>\n      </DbtrAgt>\n      <ChrgBr>SLEV</ChrgBr>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>E2E-SEPA-2026052800001</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"EUR\">1850.00</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BIC>BNPAFRPPXXX</BIC>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>Dupont Solutions SAS</Nm>\n          <PstlAdr>\n            <Ctry>FR</Ctry>\n            <AdrLine>15 Rue de Rivoli, 75001 Paris</AdrLine>\n          </PstlAdr>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>FR7630006000011234567890189</IBAN>\n          </Id>\n        </CdtrAcct>\n        <Purp>\n          <Cd>SUPP</Cd>\n        </Purp>\n        <RmtInf>\n          <Ustrd>Invoice FR-2026-0528 - Software License Q2 2026</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n    </PmtInf>\n  </CstmrCdtTrfInitn>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "CstmrCdtTrfInitn",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "SEPA-INIT-20260528-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T08:00:00"},
+                {"tag": "NbOfTxs", "value": "1"},
+                {"tag": "CtrlSum", "value": "1850.00"},
+                {
+                  "tag": "InitgPty",
+                  "children": [
+                    {"tag": "Nm", "value": "Müller Technologies GmbH"},
+                    {"tag": "Id", "children": [{"tag": "OrgId", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "DE123456789"}, {"tag": "SchmeNm", "children": [{"tag": "Cd", "value": "CUST"}]}]}]}]}
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "PmtInf",
+              "children": [
+                {"tag": "PmtInfId", "value": "PMTINF-SEPA-001"},
+                {"tag": "PmtMtd", "value": "TRF"},
+                {"tag": "NbOfTxs", "value": "1"},
+                {"tag": "CtrlSum", "value": "1850.00"},
+                {"tag": "PmtTpInf", "children": [{"tag": "SvcLvl", "children": [{"tag": "Cd", "value": "SEPA"}]}]},
+                {"tag": "ReqdExctnDt", "value": "2026-05-29"},
+                {
+                  "tag": "Dbtr",
+                  "children": [
+                    {"tag": "Nm", "value": "Müller Technologies GmbH"},
+                    {"tag": "PstlAdr", "children": [{"tag": "Ctry", "value": "DE"}, {"tag": "AdrLine", "value": "Friedrichstrasse 100, 10117 Berlin"}]}
+                  ]
+                },
+                {"tag": "DbtrAcct", "children": [{"tag": "Id", "children": [{"tag": "IBAN", "value": "DE89370400440532013000"}]}]},
+                {"tag": "DbtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BIC", "value": "COBADEFFXXX"}]}]},
+                {"tag": "ChrgBr", "value": "SLEV"},
+                {
+                  "tag": "CdtTrfTxInf",
+                  "children": [
+                    {"tag": "PmtId", "children": [{"tag": "EndToEndId", "value": "E2E-SEPA-2026052800001"}]},
+                    {"tag": "Amt", "children": [{"tag": "InstdAmt", "value": "1850.00", "attributes": {"Ccy": "EUR"}}]},
+                    {"tag": "CdtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BIC", "value": "BNPAFRPPXXX"}]}]},
+                    {
+                      "tag": "Cdtr",
+                      "children": [
+                        {"tag": "Nm", "value": "Dupont Solutions SAS"},
+                        {"tag": "PstlAdr", "children": [{"tag": "Ctry", "value": "FR"}, {"tag": "AdrLine", "value": "15 Rue de Rivoli, 75001 Paris"}]}
+                      ]
+                    },
+                    {"tag": "CdtrAcct", "children": [{"tag": "Id", "children": [{"tag": "IBAN", "value": "FR7630006000011234567890189"}]}]},
+                    {"tag": "Purp", "children": [{"tag": "Cd", "value": "SUPP"}]},
+                    {"tag": "RmtInf", "children": [{"tag": "Ustrd", "value": "Invoice FR-2026-0528 - Software License Q2 2026"}]}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-005",
+    "type": "pacs.004.001.09",
+    "title": "FedNow Payment Return",
+    "description": "Return of a previously settled FedNow payment due to incorrect account number (AC01). Original amount $750 returned in full.",
+    "network": "FedNow",
+    "direction": "outbound",
+    "category": "Payment Return",
+    "status": "returned",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.004.001.09\">\n  <PmtRtr>\n    <GrpHdr>\n      <MsgId>FNOW-RTR-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T11:45:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <SttlmInf>\n        <SttlmMtd>CLRG</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <TxInf>\n      <RtrId>RTR-FNOW-20260528-001</RtrId>\n      <OrgnlEndToEndId>E2E-FNOW-2026052800003</OrgnlEndToEndId>\n      <OrgnlUETR>c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2f</OrgnlUETR>\n      <RtrdIntrBkSttlmAmt Ccy=\"USD\">750.00</RtrdIntrBkSttlmAmt>\n      <IntrBkSttlmDt>2026-05-28</IntrBkSttlmDt>\n      <RtrRsnInf>\n        <Rsn>\n          <Cd>AC01</Cd>\n        </Rsn>\n        <AddtlInf>Incorrect account number - no matching account found</AddtlInf>\n      </RtrRsnInf>\n    </TxInf>\n  </PmtRtr>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "PmtRtr",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-RTR-20260528-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T11:45:00Z"},
+                {"tag": "NbOfTxs", "value": "1"},
+                {"tag": "SttlmInf", "children": [{"tag": "SttlmMtd", "value": "CLRG"}]}
+              ]
+            },
+            {
+              "tag": "TxInf",
+              "children": [
+                {"tag": "RtrId", "value": "RTR-FNOW-20260528-001"},
+                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800003"},
+                {"tag": "OrgnlUETR", "value": "c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2f"},
+                {"tag": "RtrdIntrBkSttlmAmt", "value": "750.00", "attributes": {"Ccy": "USD"}},
+                {"tag": "IntrBkSttlmDt", "value": "2026-05-28"},
+                {
+                  "tag": "RtrRsnInf",
+                  "children": [
+                    {"tag": "Rsn", "children": [{"tag": "Cd", "value": "AC01"}]},
+                    {"tag": "AddtlInf", "value": "Incorrect account number - no matching account found"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-006",
+    "type": "pacs.028.001.03",
+    "title": "Payment Status Request",
+    "description": "FI requesting status of a previously submitted FedNow credit transfer that has not yet received a response.",
+    "network": "FedNow",
+    "direction": "outbound",
+    "category": "Status Inquiry",
+    "status": "pending",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.028.001.03\">\n  <FIToFIPmtStsReq>\n    <GrpHdr>\n      <MsgId>FNOW-STSREQ-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T12:00:00Z</CreDtTm>\n    </GrpHdr>\n    <TxInf>\n      <OrgnlGrpInf>\n        <OrgnlMsgId>FNOW-20260528-CTR-004</OrgnlMsgId>\n        <OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>\n      </OrgnlGrpInf>\n      <OrgnlEndToEndId>E2E-FNOW-2026052800004</OrgnlEndToEndId>\n      <OrgnlUETR>d4e5f6a7-8b9c-0d1e-2f3a-4b5c6d7e8f9a</OrgnlUETR>\n    </TxInf>\n  </FIToFIPmtStsReq>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "FIToFIPmtStsReq",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-STSREQ-20260528-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T12:00:00Z"}
+              ]
+            },
+            {
+              "tag": "TxInf",
+              "children": [
+                {
+                  "tag": "OrgnlGrpInf",
+                  "children": [
+                    {"tag": "OrgnlMsgId", "value": "FNOW-20260528-CTR-004"},
+                    {"tag": "OrgnlMsgNmId", "value": "pacs.008.001.08"}
+                  ]
+                },
+                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800004"},
+                {"tag": "OrgnlUETR", "value": "d4e5f6a7-8b9c-0d1e-2f3a-4b5c6d7e8f9a"}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-007",
+    "type": "pain.013.001.07",
+    "title": "FedNow Request for Payment (RFP)",
+    "description": "Creditor-initiated request for payment through FedNow. A merchant requests $320 from a customer for an e-commerce order.",
+    "network": "FedNow",
+    "direction": "outbound",
+    "category": "Request for Payment",
+    "status": "pending",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.013.001.07\">\n  <CdtrPmtActvtnReq>\n    <GrpHdr>\n      <MsgId>FNOW-RFP-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T14:00:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <InitgPty>\n        <Nm>TechStore Inc.</Nm>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>RFP-PMT-001</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <ReqdExctnDt>\n        <Dt>2026-05-28</Dt>\n      </ReqdExctnDt>\n      <XpryDt>\n        <Dt>2026-05-29</Dt>\n      </XpryDt>\n      <Dbtr>\n        <Nm>Carol Anderson</Nm>\n      </Dbtr>\n      <DbtrAcct>\n        <Id><Othr><Id>998877665544</Id></Othr></Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>USBANK1</BICFI>\n        </FinInstnId>\n      </DbtrAgt>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>E2E-RFP-2026052800001</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"USD\">320.00</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BICFI>FNBOUS44</BICFI>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>TechStore Inc.</Nm>\n        </Cdtr>\n        <CdtrAcct>\n          <Id><Othr><Id>223344556677</Id></Othr></Id>\n        </CdtrAcct>\n        <RmtInf>\n          <Ustrd>Order #TS-2026-05280 - Electronics Purchase</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n    </PmtInf>\n  </CdtrPmtActvtnReq>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "CdtrPmtActvtnReq",
+          "children": [
+            {
+              "tag": "GrpHdr",
+              "children": [
+                {"tag": "MsgId", "value": "FNOW-RFP-20260528-001"},
+                {"tag": "CreDtTm", "value": "2026-05-28T14:00:00Z"},
+                {"tag": "NbOfTxs", "value": "1"},
+                {"tag": "InitgPty", "children": [{"tag": "Nm", "value": "TechStore Inc."}]}
+              ]
+            },
+            {
+              "tag": "PmtInf",
+              "children": [
+                {"tag": "PmtInfId", "value": "RFP-PMT-001"},
+                {"tag": "PmtMtd", "value": "TRF"},
+                {"tag": "ReqdExctnDt", "children": [{"tag": "Dt", "value": "2026-05-28"}]},
+                {"tag": "XpryDt", "children": [{"tag": "Dt", "value": "2026-05-29"}]},
+                {"tag": "Dbtr", "children": [{"tag": "Nm", "value": "Carol Anderson"}]},
+                {"tag": "DbtrAcct", "children": [{"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "998877665544"}]}]}]},
+                {"tag": "DbtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "USBANK1"}]}]},
+                {
+                  "tag": "CdtTrfTxInf",
+                  "children": [
+                    {"tag": "PmtId", "children": [{"tag": "EndToEndId", "value": "E2E-RFP-2026052800001"}]},
+                    {"tag": "Amt", "children": [{"tag": "InstdAmt", "value": "320.00", "attributes": {"Ccy": "USD"}}]},
+                    {"tag": "CdtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "FNBOUS44"}]}]},
+                    {"tag": "Cdtr", "children": [{"tag": "Nm", "value": "TechStore Inc."}]},
+                    {"tag": "CdtrAcct", "children": [{"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "223344556677"}]}]}]},
+                    {"tag": "RmtInf", "children": [{"tag": "Ustrd", "value": "Order #TS-2026-05280 - Electronics Purchase"}]}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "msg-008",
+    "type": "camt.056.001.08",
+    "title": "SEPA Payment Cancellation Request",
+    "description": "Request to cancel a previously submitted SEPA credit transfer due to duplicate payment. Uses camt.056 recall mechanism.",
+    "network": "SEPA",
+    "direction": "outbound",
+    "category": "Cancellation",
+    "status": "pending",
+    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:camt.056.001.08\">\n  <FIToFIPmtCxlReq>\n    <Assgnmt>\n      <Id>CXLREQ-SEPA-20260528-001</Id>\n      <Assgnr>\n        <Agt>\n          <FinInstnId>\n            <BICFI>COBADEFFXXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgnr>\n      <Assgne>\n        <Agt>\n          <FinInstnId>\n            <BICFI>BNPAFRPPXXX</BICFI>\n          </FinInstnId>\n        </Agt>\n      </Assgne>\n      <CreDtTm>2026-05-28T15:00:00Z</CreDtTm>\n    </Assgnmt>\n    <Undrlyg>\n      <TxInf>\n        <CxlId>CXL-20260528-001</CxlId>\n        <OrgnlEndToEndId>E2E-SEPA-2026052800001</OrgnlEndToEndId>\n        <OrgnlUETR>e5f6a7b8-9c0d-1e2f-3a4b-5c6d7e8f9a0b</OrgnlUETR>\n        <OrgnlIntrBkSttlmAmt Ccy=\"EUR\">1850.00</OrgnlIntrBkSttlmAmt>\n        <OrgnlIntrBkSttlmDt>2026-05-28</OrgnlIntrBkSttlmDt>\n        <CxlRsnInf>\n          <Rsn>\n            <Cd>DUPL</Cd>\n          </Rsn>\n          <AddtlInf>Duplicate payment - original sent via batch file in error</AddtlInf>\n        </CxlRsnInf>\n      </TxInf>\n    </Undrlyg>\n  </FIToFIPmtCxlReq>\n</Document>",
+    "parsed": {
+      "tag": "Document",
+      "children": [
+        {
+          "tag": "FIToFIPmtCxlReq",
+          "children": [
+            {
+              "tag": "Assgnmt",
+              "children": [
+                {"tag": "Id", "value": "CXLREQ-SEPA-20260528-001"},
+                {"tag": "Assgnr", "children": [{"tag": "Agt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "COBADEFFXXX"}]}]}]},
+                {"tag": "Assgne", "children": [{"tag": "Agt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "BNPAFRPPXXX"}]}]}]},
+                {"tag": "CreDtTm", "value": "2026-05-28T15:00:00Z"}
+              ]
+            },
+            {
+              "tag": "Undrlyg",
+              "children": [
+                {
+                  "tag": "TxInf",
+                  "children": [
+                    {"tag": "CxlId", "value": "CXL-20260528-001"},
+                    {"tag": "OrgnlEndToEndId", "value": "E2E-SEPA-2026052800001"},
+                    {"tag": "OrgnlUETR", "value": "e5f6a7b8-9c0d-1e2f-3a4b-5c6d7e8f9a0b"},
+                    {"tag": "OrgnlIntrBkSttlmAmt", "value": "1850.00", "attributes": {"Ccy": "EUR"}},
+                    {"tag": "OrgnlIntrBkSttlmDt", "value": "2026-05-28"},
+                    {
+                      "tag": "CxlRsnInf",
+                      "children": [
+                        {"tag": "Rsn", "children": [{"tag": "Cd", "value": "DUPL"}]},
+                        {"tag": "AddtlInf", "value": "Duplicate payment - original sent via batch file in error"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

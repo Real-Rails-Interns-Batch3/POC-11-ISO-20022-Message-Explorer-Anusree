@@ -1,0 +1,128 @@
+[
+  {
+    "id": "rule-001",
+    "category": "Schema",
+    "name": "Valid XML Structure",
+    "description": "Message must be well-formed XML with correct namespace declaration for the message type.",
+    "severity": "error",
+    "checkType": "structural",
+    "details": "Validates XML syntax, proper nesting, and namespace URI matches the declared message type (e.g., urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08)."
+  },
+  {
+    "id": "rule-002",
+    "category": "Schema",
+    "name": "Mandatory Elements Present",
+    "description": "All required elements must be present in the message. Missing mandatory fields cause immediate rejection.",
+    "severity": "error",
+    "checkType": "presence",
+    "details": "Checks: GrpHdr/MsgId [1..1], GrpHdr/CreDtTm [1..1], GrpHdr/NbOfTxs [1..1], CdtTrfTxInf/PmtId/EndToEndId [1..1], IntrBkSttlmAmt [1..1], Dbtr [1..1], Cdtr [1..1]."
+  },
+  {
+    "id": "rule-003",
+    "category": "Schema",
+    "name": "Field Length Compliance",
+    "description": "All text fields must respect maximum length constraints defined in the schema.",
+    "severity": "error",
+    "checkType": "length",
+    "details": "Max35Text fields (MsgId, EndToEndId, TxId, InstrId) ≤ 35 chars. Max140Text (Ustrd remittance) ≤ 140 chars. Max70Text (street name) ≤ 70 chars. IBAN ≤ 34 chars."
+  },
+  {
+    "id": "rule-004",
+    "category": "Business Rules",
+    "name": "Positive Amount Validation",
+    "description": "All monetary amounts must be positive (greater than zero). Zero or negative amounts are rejected.",
+    "severity": "error",
+    "checkType": "value",
+    "details": "Validates IntrBkSttlmAmt > 0, InstdAmt > 0 (if present), and RtrdIntrBkSttlmAmt > 0 (for returns). Amount format: up to 18 digits with 5 decimal places."
+  },
+  {
+    "id": "rule-005",
+    "category": "Business Rules",
+    "name": "Valid Currency Code",
+    "description": "Currency codes in Ccy attributes must be valid ISO 4217 codes.",
+    "severity": "error",
+    "checkType": "code",
+    "details": "Validates against ISO 4217 active currency list. Common valid codes: USD, EUR, GBP, JPY, CHF, CAD, AUD. Invalid codes (e.g., XXX for testing) cause rejection in production."
+  },
+  {
+    "id": "rule-006",
+    "category": "Business Rules",
+    "name": "UETR Format (UUID v4)",
+    "description": "UETR must conform to UUID version 4 format: 8-4-4-4-12 hexadecimal pattern.",
+    "severity": "error",
+    "checkType": "format",
+    "details": "Pattern: [a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}. The 13th char must be '4' (version) and 17th char must be 8, 9, a, or b (variant)."
+  },
+  {
+    "id": "rule-007",
+    "category": "Business Rules",
+    "name": "Rejection Requires Reason",
+    "description": "When TxSts is RJCT, the StsRsnInf block with reason code is mandatory.",
+    "severity": "error",
+    "checkType": "conditional",
+    "details": "If pacs.002 contains TxSts=RJCT, then StsRsnInf/Rsn/Cd must be present with a valid external reason code (e.g., AC01, AC04, AM04, BE01, RC01)."
+  },
+  {
+    "id": "rule-008",
+    "category": "Character Set",
+    "name": "Allowed Character Set",
+    "description": "Message content must use only permitted characters. Special characters outside the allowed set cause rejection.",
+    "severity": "error",
+    "checkType": "charset",
+    "details": "Allowed: a-z, A-Z, 0-9, /, -, ?, :, (, ), ., ,, ', +, space, CR, LF. Prohibited: @, #, $, %, ^, &, *, {, }, [, ], |, \\, ~, `, <, > (except XML markup)."
+  },
+  {
+    "id": "rule-009",
+    "category": "Dates",
+    "name": "Valid Date Format",
+    "description": "All date and datetime fields must use valid ISO 8601 formats with legitimate calendar values.",
+    "severity": "error",
+    "checkType": "format",
+    "details": "ISODate: YYYY-MM-DD. ISODateTime: YYYY-MM-DDThh:mm:ss[.sss]Z or with UTC offset. Month 01-12, day valid for month, no Feb 30 etc."
+  },
+  {
+    "id": "rule-010",
+    "category": "Network-Specific",
+    "name": "BIC/BICFI Format",
+    "description": "Bank Identifier Codes must conform to ISO 9362 format: 8 or 11 alphanumeric characters.",
+    "severity": "error",
+    "checkType": "format",
+    "details": "Pattern: [A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})? — 4 chars bank code + 2 chars country + 2 chars location + optional 3 chars branch."
+  },
+  {
+    "id": "rule-011",
+    "category": "Network-Specific",
+    "name": "IBAN Checksum Validation",
+    "description": "IBANs must pass MOD-97 checksum validation as per ISO 13616.",
+    "severity": "warning",
+    "checkType": "checksum",
+    "details": "Move first 4 chars to end, convert letters to numbers (A=10, B=11..Z=35), compute MOD 97. Result must equal 1. Country-specific length validation also applies."
+  },
+  {
+    "id": "rule-012",
+    "category": "Business Rules",
+    "name": "Transaction Count Consistency",
+    "description": "NbOfTxs in GrpHdr must match the actual number of transaction blocks in the message.",
+    "severity": "error",
+    "checkType": "consistency",
+    "details": "Count of CdtTrfTxInf (pacs.008) or PmtInf/CdtTrfTxInf (pain.001) blocks must equal the value in GrpHdr/NbOfTxs. Mismatch indicates data integrity issue."
+  },
+  {
+    "id": "rule-013",
+    "category": "Business Rules",
+    "name": "Control Sum Verification",
+    "description": "If CtrlSum is present, it must equal the sum of all individual transaction amounts.",
+    "severity": "warning",
+    "checkType": "consistency",
+    "details": "Sum of all InstdAmt values across transactions must equal GrpHdr/CtrlSum or PmtInf/CtrlSum. Currency-agnostic sum (raw numeric values)."
+  },
+  {
+    "id": "rule-014",
+    "category": "Network-Specific",
+    "name": "FedNow Message Size Limit",
+    "description": "FedNow messages must not exceed the maximum message size limit of approximately 100KB.",
+    "severity": "warning",
+    "checkType": "size",
+    "details": "Total XML payload size should be under 100KB for FedNow processing. SEPA has different limits. Oversized messages may be rejected or require splitting."
+  }
+]
