@@ -7,7 +7,6 @@ import { Activity } from 'lucide-react';
 import { downloadJson } from '@/lib/utils';
 import { MOCK_FULL_MESSAGES } from '@/lib/mock-data';
 import GovernanceGraph from './GovernanceGraph';
-import D3Sparkline from './D3Sparkline';
 
 interface SidebarProps {
   activeTab: DashboardTab;
@@ -52,9 +51,6 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
     statusColor = 'var(--accent-indigo)';
     statusBg = 'rgba(129,140,248,0.05)';
     statusBorder = 'rgba(129,140,248,0.2)';
-  } else if (filters.messageType === 'camt.054') {
-    currentType = 'camt.054';
-    currentScheme = 'CHAPS';
   } else if (filters.messageType) {
     currentType = filters.messageType.split('.')[0] + '.' + filters.messageType.split('.')[1];
     currentScheme = filters.network || 'Multiple';
@@ -73,31 +69,20 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
         <div className="flex flex-col gap-4 border border-[var(--border-slate)] rounded-xl p-5 bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[rgba(56,189,248,0.03)] to-transparent pointer-events-none"></div>
           
-          <div className="flex justify-between items-start relative z-10">
-            <div className="flex flex-col w-full">
-              <span className="text-[10px] font-mono text-[var(--text-tertiary)] uppercase tracking-wider mb-2">Global ISO 20022 Adoption</span>
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-bold text-white tracking-tight">{metadata.globalAdoption?.stat || "78%"}</span>
-                <span className="text-[11px] font-mono text-[var(--success)] font-medium bg-[rgba(52,211,153,0.1)] px-1.5 py-0.5 rounded flex items-center gap-1">
-                  {metadata.globalAdoption?.trend || "↑ 14pts YoY"}
-                </span>
-                <D3Sparkline data={[60, 62, 65, 68, 72, 75, 78]} />
-              </div>
-            </div>
-          </div>
-          
+          <span className="text-[10px] font-mono text-[var(--text-tertiary)] uppercase tracking-wider mb-1 block relative z-10">Global ISO 20022 Adoption</span>
           <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed relative z-10 mt-1">
-            {metadata.globalAdoption?.description || "Share of cross-border value moving over ISO 20022-native rails (CBPR+, TARGET2, FedNow, Lynx, CHAPS)."}
+            ISO 20022 adoption is accelerating across major payment rails. FedNow (US), SEPA (EU),
+            and SWIFT CBPR+ are all live on ISO 20022. For current figures see{' '}
+            <a
+              href="https://www.iso20022.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--accent-cyan)] hover:underline transition-colors"
+            >
+              iso20022.org
+            </a>
+            .
           </p>
-          
-          {metadata.globalAdoption?.sourceUrl && (
-            <div className="flex justify-between items-center relative z-10 mt-1 text-[10px] font-mono text-[var(--text-tertiary)]">
-              <a href={metadata.globalAdoption.sourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-cyan)] hover:underline transition-colors">
-                Source
-              </a>
-              <span>As of: {metadata.globalAdoption.asOfDate}</span>
-            </div>
-          )}
 
           <div className="grid grid-cols-3 gap-2 mt-2 relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-4">
             <div className="flex flex-col gap-1">

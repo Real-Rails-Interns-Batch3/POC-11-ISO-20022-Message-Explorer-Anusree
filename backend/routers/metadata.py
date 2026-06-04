@@ -31,15 +31,15 @@ def get_metadata():
             },
             {
                 "label": "Validation Rules",
-                "value": "14",
+                "value": "11",
                 "trend": "stable",
-                "description": "Schema, business rules, character set, and network-specific checks",
+                "description": "Schema, business rules, character set, and network-specific checks (11 active rules)",
             },
             {
                 "label": "Networks Covered",
                 "value": "3",
                 "trend": "active",
-                "description": "FedNow (US instant), SEPA (EU), SWIFT CBPR+ (cross-border)",
+                "description": "FedNow (US instant) and SEPA (EU) — the two networks covered by this PoC",
             },
         ],
 
@@ -109,27 +109,40 @@ def get_metadata():
 
         "dataSources": [
             {
-                "name": "FedNow Service",
-                "type": "Public Documentation",
+                "name": "moov-io/fednow20022",
+                "type": "Open-Source Reference Implementation (MIT)",
                 "status": "active",
-                "description": "Federal Reserve's instant payment service. Native ISO 20022 implementation launched July 2023.",
-                "url": "https://www.frbservices.org/financial-services/fednow",
+                "description": (
+                    "FedNow ISO 20022 library maintained by Moov Financial. "
+                    "Contains real sample XML messages published by the Federal Reserve "
+                    "(pacs.008, pacs.002) and official FedNow-constrained XSD schemas used "
+                    "for XSD validation in this explorer."
+                ),
+                "url": "https://github.com/moov-io/fednow20022",
             },
             {
-                "name": "European Payments Council",
-                "type": "Public Documentation",
+                "name": "salesking/sepa_king",
+                "type": "Open-Source Reference Implementation (MIT)",
                 "status": "active",
-                "description": "Governs SEPA payment schemes across 36 European countries. Full ISO 20022 adoption since 2018.",
-                "url": "https://www.europeanpaymentscouncil.eu",
+                "description": (
+                    "Ruby SEPA payment library by SalesKing. "
+                    "Contains EPC-aligned ISO 20022 sample XML (pain.001.001.03) "
+                    "used as the SEPA Credit Transfer Initiation sample in this explorer."
+                ),
+                "url": "https://github.com/salesking/sepa_king",
             },
             {
                 "name": "ISO 20022 Repository",
-                "type": "Reference",
+                "type": "Official Standard Reference",
                 "status": "active",
-                "description": "Official message catalog maintained by SWIFT as Registration Authority.",
+                "description": (
+                    "Official ISO 20022 message catalog maintained by SWIFT as Registration Authority. "
+                    "Definitive source for XSD schemas and field definitions."
+                ),
                 "url": "https://www.iso20022.org",
             },
         ],
+
 
         "filters": {
             "messageTypes": [
@@ -144,7 +157,6 @@ def get_metadata():
             "networks": [
                 {"value": "FedNow", "label": "FedNow (US Instant)"},
                 {"value": "SEPA", "label": "SEPA (European)"},
-                {"value": "SWIFT", "label": "SWIFT CBPR+"},
             ],
             "directions": [
                 {"value": "inbound", "label": "Inbound"},

@@ -3,12 +3,12 @@
     "id": "msg-001",
     "type": "pacs.008.001.08",
     "title": "FedNow Customer Credit Transfer",
-    "description": "FI-to-FI customer credit transfer via FedNow instant payments network. Transfers $2,500 from sender to receiver with full structured data.",
+    "description": "FI-to-FI customer credit transfer via FedNow instant payments. Real sample published by the Federal Reserve. Individual A (BankA, ABA 111111111) pays Corporation B (ABA 333333333), referencing invoice INV34563.",
     "network": "FedNow",
     "direction": "outbound",
     "category": "Credit Transfer",
     "status": "settled",
-    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08\">\n  <FIToFICstmrCdtTrf>\n    <GrpHdr>\n      <MsgId>FNOW-20260528-CTR-001</MsgId>\n      <CreDtTm>2026-05-28T09:30:00Z</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <SttlmInf>\n        <SttlmMtd>CLRG</SttlmMtd>\n      </SttlmInf>\n    </GrpHdr>\n    <CdtTrfTxInf>\n      <PmtId>\n        <InstrId>INSTR-20260528-001</InstrId>\n        <EndToEndId>E2E-FNOW-2026052800001</EndToEndId>\n        <TxId>TXN-FNOW-20260528-001</TxId>\n        <UETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</UETR>\n      </PmtId>\n      <IntrBkSttlmAmt Ccy=\"USD\">2500.00</IntrBkSttlmAmt>\n      <IntrBkSttlmDt>2026-05-28</IntrBkSttlmDt>\n      <InstdAmt Ccy=\"USD\">2500.00</InstdAmt>\n      <ChrgBr>SHAR</ChrgBr>\n      <Dbtr>\n        <Nm>Alice Richardson</Nm>\n        <PstlAdr>\n          <StrtNm>1200 Market Street</StrtNm>\n          <TwnNm>Philadelphia</TwnNm>\n          <CtrySubDvsn>PA</CtrySubDvsn>\n          <PstCd>19107</PstCd>\n          <Ctry>US</Ctry>\n        </PstlAdr>\n      </Dbtr>\n      <DbtrAcct>\n        <Id><Othr><Id>445566778899</Id></Othr></Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BICFI>CHASUS33</BICFI>\n          <Nm>JPMorgan Chase Bank</Nm>\n        </FinInstnId>\n      </DbtrAgt>\n      <CdtrAgt>\n        <FinInstnId>\n          <BICFI>BOFAUS3N</BICFI>\n          <Nm>Bank of America</Nm>\n        </FinInstnId>\n      </CdtrAgt>\n      <Cdtr>\n        <Nm>Bob Martinez</Nm>\n        <PstlAdr>\n          <StrtNm>500 Boylston Street</StrtNm>\n          <TwnNm>Boston</TwnNm>\n          <CtrySubDvsn>MA</CtrySubDvsn>\n          <PstCd>02116</PstCd>\n          <Ctry>US</Ctry>\n        </PstlAdr>\n      </Cdtr>\n      <CdtrAcct>\n        <Id><Othr><Id>112233445566</Id></Othr></Id>\n      </CdtrAcct>\n      <Purp>\n        <Cd>SUPP</Cd>\n      </Purp>\n      <RmtInf>\n        <Ustrd>Invoice INV-2026-0528 - Consulting Services May 2026</Ustrd>\n      </RmtInf>\n    </CdtTrfTxInf>\n  </FIToFICstmrCdtTrf>\n</Document>",
+    "rawXml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08\">\n\n                <FIToFICstmrCdtTrf>\n\n                    <GrpHdr>\n\n                        <MsgId>20230604111111111Sc01Step1MsgId</MsgId>\n\n                        <CreDtTm>2023-06-04T10:55:26-04:00</CreDtTm>\n\n                        <NbOfTxs>1</NbOfTxs>\n\n                        <SttlmInf>\n\n                            <SttlmMtd>CLRG</SttlmMtd>\n\n                            <ClrSys>\n\n                                <Cd>FDN</Cd>\n\n                            </ClrSys>\n\n                        </SttlmInf>\n\n                    </GrpHdr>\n\n                    <CdtTrfTxInf>\n\n                        <PmtId>\n\n                            <InstrId>Scenario01InstrId001</InstrId>\n\n                            <EndToEndId>Scenario01EtoEId001</EndToEndId>\n\n                            <UETR>8a562c67-ca16-48ba-b074-65581be6f011</UETR>\n\n                        </PmtId>\n\n                        <PmtTpInf>\n\n                            <LclInstrm>\n\n                                <Prtry>FDNA</Prtry>\n\n                            </LclInstrm>\n\n                            <CtgyPurp>\n\n                                <Prtry>CONS</Prtry>\n\n                            </CtgyPurp>\n\n                        </PmtTpInf>\n\n                        <IntrBkSttlmAmt Ccy=\"USD\">51.74</IntrBkSttlmAmt>\n\n                        <IntrBkSttlmDt>2023-06-04</IntrBkSttlmDt>\n\n                        <ChrgBr>SLEV</ChrgBr>\n\n                        <InstgAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>111111111</MmbId>\n\n                                </ClrSysMmbId>\n\n                            </FinInstnId>\n\n                        </InstgAgt>\n\n                        <InstdAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>333333333</MmbId>\n\n                                </ClrSysMmbId>\n\n                            </FinInstnId>\n\n                        </InstdAgt>\n\n                        <Dbtr>\n\n                            <Nm>Individual A</Nm>\n\n                            <PstlAdr>\n\n                                <StrtNm>Dream Road</StrtNm>\n\n                                <BldgNb>450</BldgNb>\n\n                                <Room>141</Room>\n\n                                <PstCd>60532</PstCd>\n\n                                <TwnNm>Lisle</TwnNm>\n\n                                <CtrySubDvsn>IL</CtrySubDvsn>\n\n                                <Ctry>US</Ctry>\n\n                            </PstlAdr>\n\n                        </Dbtr>\n\n                        <DbtrAcct>\n\n                            <Id>\n\n                                <Othr>\n\n                                    <Id>44444444444</Id>\n\n                                </Othr>\n\n                            </Id>\n\n                        </DbtrAcct>\n\n                        <DbtrAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>111111111</MmbId>\n\n                                </ClrSysMmbId>\n\n                                <Nm>BankA</Nm>\n\n                            </FinInstnId>\n\n                        </DbtrAgt>\n\n                        <CdtrAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>333333333</MmbId>\n\n                                </ClrSysMmbId>\n\n                            </FinInstnId>\n\n                        </CdtrAgt>\n\n                        <Cdtr>\n\n                            <Nm>Corporation B</Nm>\n\n                            <PstlAdr>\n\n                                <PstBx>6001</PstBx>\n\n                                <PstCd>60197</PstCd>\n\n                                <TwnNm>Carol Stream</TwnNm>\n\n                                <CtrySubDvsn>IL</CtrySubDvsn>\n\n                                <Ctry>US</Ctry>\n\n                            </PstlAdr>\n\n                        </Cdtr>\n\n                        <CdtrAcct>\n\n                            <Id>\n\n                                <Othr>\n\n                                    <Id>55555555555</Id>\n\n                                </Othr>\n\n                            </Id>\n\n                        </CdtrAcct>\n\n                        <RmtInf>\n\n                            <Strd>\n\n                                <RfrdDocInf>\n\n                                    <Tp>\n\n                                        <CdOrPrtry>\n\n                                            <Cd>CINV</Cd>\n\n                                        </CdOrPrtry>\n\n                                    </Tp>\n\n                                    <Nb>INV34563</Nb>\n\n                                    <RltdDt>2023-06-01</RltdDt>\n\n                                </RfrdDocInf>\n\n                            </Strd>\n\n                        </RmtInf>\n\n                    </CdtTrfTxInf>\n\n                </FIToFICstmrCdtTrf>\n\n            </Document>",
     "parsed": {
       "tag": "Document",
       "children": [
@@ -18,13 +18,25 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-20260528-CTR-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T09:30:00Z"},
-                {"tag": "NbOfTxs", "value": "1"},
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-20260528-CTR-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T09:30:00Z"
+                },
+                {
+                  "tag": "NbOfTxs",
+                  "value": "1"
+                },
                 {
                   "tag": "SttlmInf",
                   "children": [
-                    {"tag": "SttlmMtd", "value": "CLRG"}
+                    {
+                      "tag": "SttlmMtd",
+                      "value": "CLRG"
+                    }
                   ]
                 }
               ]
@@ -35,28 +47,76 @@
                 {
                   "tag": "PmtId",
                   "children": [
-                    {"tag": "InstrId", "value": "INSTR-20260528-001"},
-                    {"tag": "EndToEndId", "value": "E2E-FNOW-2026052800001"},
-                    {"tag": "TxId", "value": "TXN-FNOW-20260528-001"},
-                    {"tag": "UETR", "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"}
+                    {
+                      "tag": "InstrId",
+                      "value": "INSTR-20260528-001"
+                    },
+                    {
+                      "tag": "EndToEndId",
+                      "value": "E2E-FNOW-2026052800001"
+                    },
+                    {
+                      "tag": "TxId",
+                      "value": "TXN-FNOW-20260528-001"
+                    },
+                    {
+                      "tag": "UETR",
+                      "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"
+                    }
                   ]
                 },
-                {"tag": "IntrBkSttlmAmt", "value": "2500.00", "attributes": {"Ccy": "USD"}},
-                {"tag": "IntrBkSttlmDt", "value": "2026-05-28"},
-                {"tag": "InstdAmt", "value": "2500.00", "attributes": {"Ccy": "USD"}},
-                {"tag": "ChrgBr", "value": "SHAR"},
+                {
+                  "tag": "IntrBkSttlmAmt",
+                  "value": "2500.00",
+                  "attributes": {
+                    "Ccy": "USD"
+                  }
+                },
+                {
+                  "tag": "IntrBkSttlmDt",
+                  "value": "2026-05-28"
+                },
+                {
+                  "tag": "InstdAmt",
+                  "value": "2500.00",
+                  "attributes": {
+                    "Ccy": "USD"
+                  }
+                },
+                {
+                  "tag": "ChrgBr",
+                  "value": "SHAR"
+                },
                 {
                   "tag": "Dbtr",
                   "children": [
-                    {"tag": "Nm", "value": "Alice Richardson"},
+                    {
+                      "tag": "Nm",
+                      "value": "Alice Richardson"
+                    },
                     {
                       "tag": "PstlAdr",
                       "children": [
-                        {"tag": "StrtNm", "value": "1200 Market Street"},
-                        {"tag": "TwnNm", "value": "Philadelphia"},
-                        {"tag": "CtrySubDvsn", "value": "PA"},
-                        {"tag": "PstCd", "value": "19107"},
-                        {"tag": "Ctry", "value": "US"}
+                        {
+                          "tag": "StrtNm",
+                          "value": "1200 Market Street"
+                        },
+                        {
+                          "tag": "TwnNm",
+                          "value": "Philadelphia"
+                        },
+                        {
+                          "tag": "CtrySubDvsn",
+                          "value": "PA"
+                        },
+                        {
+                          "tag": "PstCd",
+                          "value": "19107"
+                        },
+                        {
+                          "tag": "Ctry",
+                          "value": "US"
+                        }
                       ]
                     }
                   ]
@@ -64,7 +124,20 @@
                 {
                   "tag": "DbtrAcct",
                   "children": [
-                    {"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "445566778899"}]}]}
+                    {
+                      "tag": "Id",
+                      "children": [
+                        {
+                          "tag": "Othr",
+                          "children": [
+                            {
+                              "tag": "Id",
+                              "value": "445566778899"
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
@@ -73,8 +146,14 @@
                     {
                       "tag": "FinInstnId",
                       "children": [
-                        {"tag": "BICFI", "value": "CHASUS33"},
-                        {"tag": "Nm", "value": "JPMorgan Chase Bank"}
+                        {
+                          "tag": "BICFI",
+                          "value": "CHASUS33"
+                        },
+                        {
+                          "tag": "Nm",
+                          "value": "JPMorgan Chase Bank"
+                        }
                       ]
                     }
                   ]
@@ -85,8 +164,14 @@
                     {
                       "tag": "FinInstnId",
                       "children": [
-                        {"tag": "BICFI", "value": "BOFAUS3N"},
-                        {"tag": "Nm", "value": "Bank of America"}
+                        {
+                          "tag": "BICFI",
+                          "value": "BOFAUS3N"
+                        },
+                        {
+                          "tag": "Nm",
+                          "value": "Bank of America"
+                        }
                       ]
                     }
                   ]
@@ -94,15 +179,33 @@
                 {
                   "tag": "Cdtr",
                   "children": [
-                    {"tag": "Nm", "value": "Bob Martinez"},
+                    {
+                      "tag": "Nm",
+                      "value": "Bob Martinez"
+                    },
                     {
                       "tag": "PstlAdr",
                       "children": [
-                        {"tag": "StrtNm", "value": "500 Boylston Street"},
-                        {"tag": "TwnNm", "value": "Boston"},
-                        {"tag": "CtrySubDvsn", "value": "MA"},
-                        {"tag": "PstCd", "value": "02116"},
-                        {"tag": "Ctry", "value": "US"}
+                        {
+                          "tag": "StrtNm",
+                          "value": "500 Boylston Street"
+                        },
+                        {
+                          "tag": "TwnNm",
+                          "value": "Boston"
+                        },
+                        {
+                          "tag": "CtrySubDvsn",
+                          "value": "MA"
+                        },
+                        {
+                          "tag": "PstCd",
+                          "value": "02116"
+                        },
+                        {
+                          "tag": "Ctry",
+                          "value": "US"
+                        }
                       ]
                     }
                   ]
@@ -110,14 +213,38 @@
                 {
                   "tag": "CdtrAcct",
                   "children": [
-                    {"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "112233445566"}]}]}
+                    {
+                      "tag": "Id",
+                      "children": [
+                        {
+                          "tag": "Othr",
+                          "children": [
+                            {
+                              "tag": "Id",
+                              "value": "112233445566"
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 },
-                {"tag": "Purp", "children": [{"tag": "Cd", "value": "SUPP"}]},
+                {
+                  "tag": "Purp",
+                  "children": [
+                    {
+                      "tag": "Cd",
+                      "value": "SUPP"
+                    }
+                  ]
+                },
                 {
                   "tag": "RmtInf",
                   "children": [
-                    {"tag": "Ustrd", "value": "Invoice INV-2026-0528 - Consulting Services May 2026"}
+                    {
+                      "tag": "Ustrd",
+                      "value": "Invoice INV-2026-0528 - Consulting Services May 2026"
+                    }
                   ]
                 }
               ]
@@ -125,18 +252,19 @@
           ]
         }
       ]
-    }
+    },
+    "dataSource": "Federal Reserve / moov-io/fednow20022 (MIT)"
   },
   {
     "id": "msg-002",
     "type": "pacs.002.001.10",
     "title": "FedNow Payment Accept (ACTC)",
-    "description": "Payment status report confirming acceptance of a FedNow credit transfer by the receiving financial institution.",
+    "description": "Payment status report confirming acceptance (ACTC) of a FedNow credit transfer. Real sample published by the Federal Reserve. References original UETR 8a562c67-ca16-48ba-b074-65581be6f011.",
     "network": "FedNow",
     "direction": "inbound",
     "category": "Status Report",
     "status": "accepted",
-    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10\">\n  <FIToFIPmtStsRpt>\n    <GrpHdr>\n      <MsgId>FNOW-STS-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T09:30:05Z</CreDtTm>\n    </GrpHdr>\n    <TxInfAndSts>\n      <OrgnlInstrId>INSTR-20260528-001</OrgnlInstrId>\n      <OrgnlEndToEndId>E2E-FNOW-2026052800001</OrgnlEndToEndId>\n      <OrgnlUETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</OrgnlUETR>\n      <TxSts>ACTC</TxSts>\n      <AccptncDtTm>2026-05-28T09:30:04Z</AccptncDtTm>\n      <InstgAgt>\n        <FinInstnId>\n          <BICFI>BOFAUS3N</BICFI>\n        </FinInstnId>\n      </InstgAgt>\n      <InstdAgt>\n        <FinInstnId>\n          <BICFI>CHASUS33</BICFI>\n        </FinInstnId>\n      </InstdAgt>\n    </TxInfAndSts>\n  </FIToFIPmtStsRpt>\n</Document>",
+    "rawXml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10\">\n\n                <FIToFIPmtStsRpt>\n\n                    <GrpHdr>\n\n                        <MsgId>20230604111111111Sc01Step3MsgId</MsgId>\n\n                        <CreDtTm>2023-06-04T10:55:30-04:00</CreDtTm>\n\n                    </GrpHdr>\n\n                    <TxInfAndSts>\n\n                        <OrgnlGrpInf>\n\n                            <OrgnlMsgId>20230604222222222Sc01Step1MsgId</OrgnlMsgId>\n\n                            <OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>\n\n                            <OrgnlCreDtTm>2023-06-04T10:55:26-04:00</OrgnlCreDtTm>\n\n                        </OrgnlGrpInf>\n\n                        <OrgnlInstrId>Scenario01InstrId001</OrgnlInstrId>\n\n                        <OrgnlEndToEndId>Scenario01EtoEId001</OrgnlEndToEndId>\n\n                        <OrgnlUETR>8a562c67-ca16-48ba-b074-65581be6f011</OrgnlUETR>\n\n                        <TxSts>ACTC</TxSts>\n\n                        <InstgAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>111111111</MmbId>\n\n                                </ClrSysMmbId>\n\n                            </FinInstnId>\n\n                        </InstgAgt>\n\n                        <InstdAgt>\n\n                            <FinInstnId>\n\n                                <ClrSysMmbId>\n\n                                    <ClrSysId>\n\n                                        <Cd>USABA</Cd>\n\n                                    </ClrSysId>\n\n                                    <MmbId>222222222</MmbId>\n\n                                </ClrSysMmbId>\n\n                            </FinInstnId>\n\n                        </InstdAgt>\n\n                    </TxInfAndSts>\n\n                </FIToFIPmtStsRpt>\n\n            </Document>",
     "parsed": {
       "tag": "Document",
       "children": [
@@ -146,32 +274,74 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-STS-20260528-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T09:30:05Z"}
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-STS-20260528-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T09:30:05Z"
+                }
               ]
             },
             {
               "tag": "TxInfAndSts",
               "children": [
-                {"tag": "OrgnlInstrId", "value": "INSTR-20260528-001"},
-                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800001"},
-                {"tag": "OrgnlUETR", "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"},
-                {"tag": "TxSts", "value": "ACTC"},
-                {"tag": "AccptncDtTm", "value": "2026-05-28T09:30:04Z"},
+                {
+                  "tag": "OrgnlInstrId",
+                  "value": "INSTR-20260528-001"
+                },
+                {
+                  "tag": "OrgnlEndToEndId",
+                  "value": "E2E-FNOW-2026052800001"
+                },
+                {
+                  "tag": "OrgnlUETR",
+                  "value": "eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a"
+                },
+                {
+                  "tag": "TxSts",
+                  "value": "ACTC"
+                },
+                {
+                  "tag": "AccptncDtTm",
+                  "value": "2026-05-28T09:30:04Z"
+                },
                 {
                   "tag": "InstgAgt",
-                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "BOFAUS3N"}]}]
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BICFI",
+                          "value": "BOFAUS3N"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "tag": "InstdAgt",
-                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "CHASUS33"}]}]
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BICFI",
+                          "value": "CHASUS33"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
           ]
         }
       ]
-    }
+    },
+    "dataSource": "Federal Reserve / moov-io/fednow20022 (MIT)"
   },
   {
     "id": "msg-003",
@@ -192,31 +362,80 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-STS-20260528-002"},
-                {"tag": "CreDtTm", "value": "2026-05-28T10:15:00Z"}
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-STS-20260528-002"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T10:15:00Z"
+                }
               ]
             },
             {
               "tag": "TxInfAndSts",
               "children": [
-                {"tag": "OrgnlInstrId", "value": "INSTR-20260528-002"},
-                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800002"},
-                {"tag": "OrgnlUETR", "value": "a1b2c3d4-5e6f-7a8b-9c0d-e1f2a3b4c5d6"},
-                {"tag": "TxSts", "value": "RJCT"},
+                {
+                  "tag": "OrgnlInstrId",
+                  "value": "INSTR-20260528-002"
+                },
+                {
+                  "tag": "OrgnlEndToEndId",
+                  "value": "E2E-FNOW-2026052800002"
+                },
+                {
+                  "tag": "OrgnlUETR",
+                  "value": "a1b2c3d4-5e6f-7a8b-9c0d-e1f2a3b4c5d6"
+                },
+                {
+                  "tag": "TxSts",
+                  "value": "RJCT"
+                },
                 {
                   "tag": "StsRsnInf",
                   "children": [
-                    {"tag": "Rsn", "children": [{"tag": "Cd", "value": "AC04"}]},
-                    {"tag": "AddtlInf", "value": "Account has been closed at receiving institution"}
+                    {
+                      "tag": "Rsn",
+                      "children": [
+                        {
+                          "tag": "Cd",
+                          "value": "AC04"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "AddtlInf",
+                      "value": "Account has been closed at receiving institution"
+                    }
                   ]
                 },
                 {
                   "tag": "InstgAgt",
-                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "WFBIUS6S"}]}]
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BICFI",
+                          "value": "WFBIUS6S"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
                   "tag": "InstdAgt",
-                  "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "CITIUS33"}]}]
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BICFI",
+                          "value": "CITIUS33"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -229,12 +448,12 @@
     "id": "msg-004",
     "type": "pain.001.001.03",
     "title": "SEPA Credit Transfer Initiation",
-    "description": "Customer-to-bank payment initiation for a EUR 1,850 SEPA credit transfer from Germany to France. Demonstrates the pain.001 3-level hierarchy.",
+    "description": "Customer-to-bank payment initiation for two SEPA credit transfers (EUR 6,543.14 + EUR 112.72). Real sample from the European Payments Council reference implementation (salesking/sepa_king). Debtor IBAN DE87200500001234567890, Creditor IBAN DE21500500009876543210.",
     "network": "SEPA",
     "direction": "outbound",
     "category": "Payment Initiation",
     "status": "pending",
-    "rawXml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03\">\n  <CstmrCdtTrfInitn>\n    <GrpHdr>\n      <MsgId>SEPA-INIT-20260528-001</MsgId>\n      <CreDtTm>2026-05-28T08:00:00</CreDtTm>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>1850.00</CtrlSum>\n      <InitgPty>\n        <Nm>Müller Technologies GmbH</Nm>\n        <Id>\n          <OrgId>\n            <Othr>\n              <Id>DE123456789</Id>\n              <SchmeNm>\n                <Cd>CUST</Cd>\n              </SchmeNm>\n            </Othr>\n          </OrgId>\n        </Id>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>PMTINF-SEPA-001</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <NbOfTxs>1</NbOfTxs>\n      <CtrlSum>1850.00</CtrlSum>\n      <PmtTpInf>\n        <SvcLvl>\n          <Cd>SEPA</Cd>\n        </SvcLvl>\n      </PmtTpInf>\n      <ReqdExctnDt>2026-05-29</ReqdExctnDt>\n      <Dbtr>\n        <Nm>Müller Technologies GmbH</Nm>\n        <PstlAdr>\n          <Ctry>DE</Ctry>\n          <AdrLine>Friedrichstrasse 100, 10117 Berlin</AdrLine>\n        </PstlAdr>\n      </Dbtr>\n      <DbtrAcct>\n        <Id>\n          <IBAN>DE89370400440532013000</IBAN>\n        </Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BIC>COBADEFFXXX</BIC>\n        </FinInstnId>\n      </DbtrAgt>\n      <ChrgBr>SLEV</ChrgBr>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>E2E-SEPA-2026052800001</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"EUR\">1850.00</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BIC>BNPAFRPPXXX</BIC>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>Dupont Solutions SAS</Nm>\n          <PstlAdr>\n            <Ctry>FR</Ctry>\n            <AdrLine>15 Rue de Rivoli, 75001 Paris</AdrLine>\n          </PstlAdr>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>FR7630006000011234567890189</IBAN>\n          </Id>\n        </CdtrAcct>\n        <Purp>\n          <Cd>SUPP</Cd>\n        </Purp>\n        <RmtInf>\n          <Ustrd>Invoice FR-2026-0528 - Software License Q2 2026</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n    </PmtInf>\n  </CstmrCdtTrfInitn>\n</Document>",
+    "rawXml": "<Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd\">\n  <CstmrCdtTrfInitn>\n    <GrpHdr>\n      <MsgId>Message-ID-4711</MsgId>\n      <CreDtTm>2010-11-11T09:30:47.000Z</CreDtTm>\n      <NbOfTxs>2</NbOfTxs>\n      <InitgPty>\n        <Nm>Initiator Name</Nm>\n      </InitgPty>\n    </GrpHdr>\n    <PmtInf>\n      <PmtInfId>Payment-Information-ID-4711</PmtInfId>\n      <PmtMtd>TRF</PmtMtd>\n      <BtchBookg>true</BtchBookg>\n      <NbOfTxs>2</NbOfTxs>\n      <CtrlSum>6655.86</CtrlSum>\n      <PmtTpInf>\n        <SvcLvl>\n          <Cd>SEPA</Cd>\n        </SvcLvl>\n      </PmtTpInf>\n      <ReqdExctnDt>2010-11-25</ReqdExctnDt>\n      <Dbtr>\n        <Nm>Debtor Name</Nm>\n      </Dbtr>\n      <DbtrAcct>\n        <Id>\n          <IBAN>DE87200500001234567890</IBAN>\n        </Id>\n      </DbtrAcct>\n      <DbtrAgt>\n        <FinInstnId>\n          <BIC>BANKDEFFXXX</BIC>\n        </FinInstnId>\n      </DbtrAgt>\n      <ChrgBr>SLEV</ChrgBr>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>OriginatorID1234</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"EUR\">6543.14</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BIC>SPUEDE2UXXX</BIC>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>Creditor Name</Nm>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>DE21500500009876543210</IBAN>\n          </Id>\n        </CdtrAcct>\n        <RmtInf>\n          <Ustrd>Unstructured Remittance Information</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n      <CdtTrfTxInf>\n        <PmtId>\n          <EndToEndId>OriginatorID1235</EndToEndId>\n        </PmtId>\n        <Amt>\n          <InstdAmt Ccy=\"EUR\">112.72</InstdAmt>\n        </Amt>\n        <CdtrAgt>\n          <FinInstnId>\n            <BIC>SPUEDE2UXXX</BIC>\n          </FinInstnId>\n        </CdtrAgt>\n        <Cdtr>\n          <Nm>Other Creditor Name</Nm>\n        </Cdtr>\n        <CdtrAcct>\n          <Id>\n            <IBAN>DE21500500001234567897</IBAN>\n          </Id>\n        </CdtrAcct>\n        <RmtInf>\n          <Ustrd>Unstructured Remittance Information</Ustrd>\n        </RmtInf>\n      </CdtTrfTxInf>\n    </PmtInf>\n  </CstmrCdtTrfInitn>\n</Document>",
     "parsed": {
       "tag": "Document",
       "children": [
@@ -244,15 +463,57 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "SEPA-INIT-20260528-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T08:00:00"},
-                {"tag": "NbOfTxs", "value": "1"},
-                {"tag": "CtrlSum", "value": "1850.00"},
+                {
+                  "tag": "MsgId",
+                  "value": "SEPA-INIT-20260528-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T08:00:00"
+                },
+                {
+                  "tag": "NbOfTxs",
+                  "value": "1"
+                },
+                {
+                  "tag": "CtrlSum",
+                  "value": "1850.00"
+                },
                 {
                   "tag": "InitgPty",
                   "children": [
-                    {"tag": "Nm", "value": "Müller Technologies GmbH"},
-                    {"tag": "Id", "children": [{"tag": "OrgId", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "DE123456789"}, {"tag": "SchmeNm", "children": [{"tag": "Cd", "value": "CUST"}]}]}]}]}
+                    {
+                      "tag": "Nm",
+                      "value": "Müller Technologies GmbH"
+                    },
+                    {
+                      "tag": "Id",
+                      "children": [
+                        {
+                          "tag": "OrgId",
+                          "children": [
+                            {
+                              "tag": "Othr",
+                              "children": [
+                                {
+                                  "tag": "Id",
+                                  "value": "DE123456789"
+                                },
+                                {
+                                  "tag": "SchmeNm",
+                                  "children": [
+                                    {
+                                      "tag": "Cd",
+                                      "value": "CUST"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -260,38 +521,186 @@
             {
               "tag": "PmtInf",
               "children": [
-                {"tag": "PmtInfId", "value": "PMTINF-SEPA-001"},
-                {"tag": "PmtMtd", "value": "TRF"},
-                {"tag": "NbOfTxs", "value": "1"},
-                {"tag": "CtrlSum", "value": "1850.00"},
-                {"tag": "PmtTpInf", "children": [{"tag": "SvcLvl", "children": [{"tag": "Cd", "value": "SEPA"}]}]},
-                {"tag": "ReqdExctnDt", "value": "2026-05-29"},
+                {
+                  "tag": "PmtInfId",
+                  "value": "PMTINF-SEPA-001"
+                },
+                {
+                  "tag": "PmtMtd",
+                  "value": "TRF"
+                },
+                {
+                  "tag": "NbOfTxs",
+                  "value": "1"
+                },
+                {
+                  "tag": "CtrlSum",
+                  "value": "1850.00"
+                },
+                {
+                  "tag": "PmtTpInf",
+                  "children": [
+                    {
+                      "tag": "SvcLvl",
+                      "children": [
+                        {
+                          "tag": "Cd",
+                          "value": "SEPA"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "ReqdExctnDt",
+                  "value": "2026-05-29"
+                },
                 {
                   "tag": "Dbtr",
                   "children": [
-                    {"tag": "Nm", "value": "Müller Technologies GmbH"},
-                    {"tag": "PstlAdr", "children": [{"tag": "Ctry", "value": "DE"}, {"tag": "AdrLine", "value": "Friedrichstrasse 100, 10117 Berlin"}]}
+                    {
+                      "tag": "Nm",
+                      "value": "Müller Technologies GmbH"
+                    },
+                    {
+                      "tag": "PstlAdr",
+                      "children": [
+                        {
+                          "tag": "Ctry",
+                          "value": "DE"
+                        },
+                        {
+                          "tag": "AdrLine",
+                          "value": "Friedrichstrasse 100, 10117 Berlin"
+                        }
+                      ]
+                    }
                   ]
                 },
-                {"tag": "DbtrAcct", "children": [{"tag": "Id", "children": [{"tag": "IBAN", "value": "DE89370400440532013000"}]}]},
-                {"tag": "DbtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BIC", "value": "COBADEFFXXX"}]}]},
-                {"tag": "ChrgBr", "value": "SLEV"},
+                {
+                  "tag": "DbtrAcct",
+                  "children": [
+                    {
+                      "tag": "Id",
+                      "children": [
+                        {
+                          "tag": "IBAN",
+                          "value": "DE89370400440532013000"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "DbtrAgt",
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BIC",
+                          "value": "COBADEFFXXX"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "ChrgBr",
+                  "value": "SLEV"
+                },
                 {
                   "tag": "CdtTrfTxInf",
                   "children": [
-                    {"tag": "PmtId", "children": [{"tag": "EndToEndId", "value": "E2E-SEPA-2026052800001"}]},
-                    {"tag": "Amt", "children": [{"tag": "InstdAmt", "value": "1850.00", "attributes": {"Ccy": "EUR"}}]},
-                    {"tag": "CdtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BIC", "value": "BNPAFRPPXXX"}]}]},
+                    {
+                      "tag": "PmtId",
+                      "children": [
+                        {
+                          "tag": "EndToEndId",
+                          "value": "E2E-SEPA-2026052800001"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "Amt",
+                      "children": [
+                        {
+                          "tag": "InstdAmt",
+                          "value": "1850.00",
+                          "attributes": {
+                            "Ccy": "EUR"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "CdtrAgt",
+                      "children": [
+                        {
+                          "tag": "FinInstnId",
+                          "children": [
+                            {
+                              "tag": "BIC",
+                              "value": "BNPAFRPPXXX"
+                            }
+                          ]
+                        }
+                      ]
+                    },
                     {
                       "tag": "Cdtr",
                       "children": [
-                        {"tag": "Nm", "value": "Dupont Solutions SAS"},
-                        {"tag": "PstlAdr", "children": [{"tag": "Ctry", "value": "FR"}, {"tag": "AdrLine", "value": "15 Rue de Rivoli, 75001 Paris"}]}
+                        {
+                          "tag": "Nm",
+                          "value": "Dupont Solutions SAS"
+                        },
+                        {
+                          "tag": "PstlAdr",
+                          "children": [
+                            {
+                              "tag": "Ctry",
+                              "value": "FR"
+                            },
+                            {
+                              "tag": "AdrLine",
+                              "value": "15 Rue de Rivoli, 75001 Paris"
+                            }
+                          ]
+                        }
                       ]
                     },
-                    {"tag": "CdtrAcct", "children": [{"tag": "Id", "children": [{"tag": "IBAN", "value": "FR7630006000011234567890189"}]}]},
-                    {"tag": "Purp", "children": [{"tag": "Cd", "value": "SUPP"}]},
-                    {"tag": "RmtInf", "children": [{"tag": "Ustrd", "value": "Invoice FR-2026-0528 - Software License Q2 2026"}]}
+                    {
+                      "tag": "CdtrAcct",
+                      "children": [
+                        {
+                          "tag": "Id",
+                          "children": [
+                            {
+                              "tag": "IBAN",
+                              "value": "FR7630006000011234567890189"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "Purp",
+                      "children": [
+                        {
+                          "tag": "Cd",
+                          "value": "SUPP"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "RmtInf",
+                      "children": [
+                        {
+                          "tag": "Ustrd",
+                          "value": "Invoice FR-2026-0528 - Software License Q2 2026"
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -299,7 +708,8 @@
           ]
         }
       ]
-    }
+    },
+    "dataSource": "EPC / salesking/sepa_king (MIT)"
   },
   {
     "id": "msg-005",
@@ -320,25 +730,71 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-RTR-20260528-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T11:45:00Z"},
-                {"tag": "NbOfTxs", "value": "1"},
-                {"tag": "SttlmInf", "children": [{"tag": "SttlmMtd", "value": "CLRG"}]}
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-RTR-20260528-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T11:45:00Z"
+                },
+                {
+                  "tag": "NbOfTxs",
+                  "value": "1"
+                },
+                {
+                  "tag": "SttlmInf",
+                  "children": [
+                    {
+                      "tag": "SttlmMtd",
+                      "value": "CLRG"
+                    }
+                  ]
+                }
               ]
             },
             {
               "tag": "TxInf",
               "children": [
-                {"tag": "RtrId", "value": "RTR-FNOW-20260528-001"},
-                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800003"},
-                {"tag": "OrgnlUETR", "value": "c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2f"},
-                {"tag": "RtrdIntrBkSttlmAmt", "value": "750.00", "attributes": {"Ccy": "USD"}},
-                {"tag": "IntrBkSttlmDt", "value": "2026-05-28"},
+                {
+                  "tag": "RtrId",
+                  "value": "RTR-FNOW-20260528-001"
+                },
+                {
+                  "tag": "OrgnlEndToEndId",
+                  "value": "E2E-FNOW-2026052800003"
+                },
+                {
+                  "tag": "OrgnlUETR",
+                  "value": "c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2f"
+                },
+                {
+                  "tag": "RtrdIntrBkSttlmAmt",
+                  "value": "750.00",
+                  "attributes": {
+                    "Ccy": "USD"
+                  }
+                },
+                {
+                  "tag": "IntrBkSttlmDt",
+                  "value": "2026-05-28"
+                },
                 {
                   "tag": "RtrRsnInf",
                   "children": [
-                    {"tag": "Rsn", "children": [{"tag": "Cd", "value": "AC01"}]},
-                    {"tag": "AddtlInf", "value": "Incorrect account number - no matching account found"}
+                    {
+                      "tag": "Rsn",
+                      "children": [
+                        {
+                          "tag": "Cd",
+                          "value": "AC01"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "AddtlInf",
+                      "value": "Incorrect account number - no matching account found"
+                    }
                   ]
                 }
               ]
@@ -367,8 +823,14 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-STSREQ-20260528-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T12:00:00Z"}
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-STSREQ-20260528-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T12:00:00Z"
+                }
               ]
             },
             {
@@ -377,12 +839,24 @@
                 {
                   "tag": "OrgnlGrpInf",
                   "children": [
-                    {"tag": "OrgnlMsgId", "value": "FNOW-20260528-CTR-004"},
-                    {"tag": "OrgnlMsgNmId", "value": "pacs.008.001.08"}
+                    {
+                      "tag": "OrgnlMsgId",
+                      "value": "FNOW-20260528-CTR-004"
+                    },
+                    {
+                      "tag": "OrgnlMsgNmId",
+                      "value": "pacs.008.001.08"
+                    }
                   ]
                 },
-                {"tag": "OrgnlEndToEndId", "value": "E2E-FNOW-2026052800004"},
-                {"tag": "OrgnlUETR", "value": "d4e5f6a7-8b9c-0d1e-2f3a-4b5c6d7e8f9a"}
+                {
+                  "tag": "OrgnlEndToEndId",
+                  "value": "E2E-FNOW-2026052800004"
+                },
+                {
+                  "tag": "OrgnlUETR",
+                  "value": "d4e5f6a7-8b9c-0d1e-2f3a-4b5c6d7e8f9a"
+                }
               ]
             }
           ]
@@ -409,31 +883,175 @@
             {
               "tag": "GrpHdr",
               "children": [
-                {"tag": "MsgId", "value": "FNOW-RFP-20260528-001"},
-                {"tag": "CreDtTm", "value": "2026-05-28T14:00:00Z"},
-                {"tag": "NbOfTxs", "value": "1"},
-                {"tag": "InitgPty", "children": [{"tag": "Nm", "value": "TechStore Inc."}]}
+                {
+                  "tag": "MsgId",
+                  "value": "FNOW-RFP-20260528-001"
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T14:00:00Z"
+                },
+                {
+                  "tag": "NbOfTxs",
+                  "value": "1"
+                },
+                {
+                  "tag": "InitgPty",
+                  "children": [
+                    {
+                      "tag": "Nm",
+                      "value": "TechStore Inc."
+                    }
+                  ]
+                }
               ]
             },
             {
               "tag": "PmtInf",
               "children": [
-                {"tag": "PmtInfId", "value": "RFP-PMT-001"},
-                {"tag": "PmtMtd", "value": "TRF"},
-                {"tag": "ReqdExctnDt", "children": [{"tag": "Dt", "value": "2026-05-28"}]},
-                {"tag": "XpryDt", "children": [{"tag": "Dt", "value": "2026-05-29"}]},
-                {"tag": "Dbtr", "children": [{"tag": "Nm", "value": "Carol Anderson"}]},
-                {"tag": "DbtrAcct", "children": [{"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "998877665544"}]}]}]},
-                {"tag": "DbtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "USBANK1"}]}]},
+                {
+                  "tag": "PmtInfId",
+                  "value": "RFP-PMT-001"
+                },
+                {
+                  "tag": "PmtMtd",
+                  "value": "TRF"
+                },
+                {
+                  "tag": "ReqdExctnDt",
+                  "children": [
+                    {
+                      "tag": "Dt",
+                      "value": "2026-05-28"
+                    }
+                  ]
+                },
+                {
+                  "tag": "XpryDt",
+                  "children": [
+                    {
+                      "tag": "Dt",
+                      "value": "2026-05-29"
+                    }
+                  ]
+                },
+                {
+                  "tag": "Dbtr",
+                  "children": [
+                    {
+                      "tag": "Nm",
+                      "value": "Carol Anderson"
+                    }
+                  ]
+                },
+                {
+                  "tag": "DbtrAcct",
+                  "children": [
+                    {
+                      "tag": "Id",
+                      "children": [
+                        {
+                          "tag": "Othr",
+                          "children": [
+                            {
+                              "tag": "Id",
+                              "value": "998877665544"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "DbtrAgt",
+                  "children": [
+                    {
+                      "tag": "FinInstnId",
+                      "children": [
+                        {
+                          "tag": "BICFI",
+                          "value": "USBANK1"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "tag": "CdtTrfTxInf",
                   "children": [
-                    {"tag": "PmtId", "children": [{"tag": "EndToEndId", "value": "E2E-RFP-2026052800001"}]},
-                    {"tag": "Amt", "children": [{"tag": "InstdAmt", "value": "320.00", "attributes": {"Ccy": "USD"}}]},
-                    {"tag": "CdtrAgt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "FNBOUS44"}]}]},
-                    {"tag": "Cdtr", "children": [{"tag": "Nm", "value": "TechStore Inc."}]},
-                    {"tag": "CdtrAcct", "children": [{"tag": "Id", "children": [{"tag": "Othr", "children": [{"tag": "Id", "value": "223344556677"}]}]}]},
-                    {"tag": "RmtInf", "children": [{"tag": "Ustrd", "value": "Order #TS-2026-05280 - Electronics Purchase"}]}
+                    {
+                      "tag": "PmtId",
+                      "children": [
+                        {
+                          "tag": "EndToEndId",
+                          "value": "E2E-RFP-2026052800001"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "Amt",
+                      "children": [
+                        {
+                          "tag": "InstdAmt",
+                          "value": "320.00",
+                          "attributes": {
+                            "Ccy": "USD"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "CdtrAgt",
+                      "children": [
+                        {
+                          "tag": "FinInstnId",
+                          "children": [
+                            {
+                              "tag": "BICFI",
+                              "value": "FNBOUS44"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "Cdtr",
+                      "children": [
+                        {
+                          "tag": "Nm",
+                          "value": "TechStore Inc."
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "CdtrAcct",
+                      "children": [
+                        {
+                          "tag": "Id",
+                          "children": [
+                            {
+                              "tag": "Othr",
+                              "children": [
+                                {
+                                  "tag": "Id",
+                                  "value": "223344556677"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "RmtInf",
+                      "children": [
+                        {
+                          "tag": "Ustrd",
+                          "value": "Order #TS-2026-05280 - Electronics Purchase"
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -462,10 +1080,52 @@
             {
               "tag": "Assgnmt",
               "children": [
-                {"tag": "Id", "value": "CXLREQ-SEPA-20260528-001"},
-                {"tag": "Assgnr", "children": [{"tag": "Agt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "COBADEFFXXX"}]}]}]},
-                {"tag": "Assgne", "children": [{"tag": "Agt", "children": [{"tag": "FinInstnId", "children": [{"tag": "BICFI", "value": "BNPAFRPPXXX"}]}]}]},
-                {"tag": "CreDtTm", "value": "2026-05-28T15:00:00Z"}
+                {
+                  "tag": "Id",
+                  "value": "CXLREQ-SEPA-20260528-001"
+                },
+                {
+                  "tag": "Assgnr",
+                  "children": [
+                    {
+                      "tag": "Agt",
+                      "children": [
+                        {
+                          "tag": "FinInstnId",
+                          "children": [
+                            {
+                              "tag": "BICFI",
+                              "value": "COBADEFFXXX"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "Assgne",
+                  "children": [
+                    {
+                      "tag": "Agt",
+                      "children": [
+                        {
+                          "tag": "FinInstnId",
+                          "children": [
+                            {
+                              "tag": "BICFI",
+                              "value": "BNPAFRPPXXX"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "CreDtTm",
+                  "value": "2026-05-28T15:00:00Z"
+                }
               ]
             },
             {
@@ -474,16 +1134,45 @@
                 {
                   "tag": "TxInf",
                   "children": [
-                    {"tag": "CxlId", "value": "CXL-20260528-001"},
-                    {"tag": "OrgnlEndToEndId", "value": "E2E-SEPA-2026052800001"},
-                    {"tag": "OrgnlUETR", "value": "e5f6a7b8-9c0d-1e2f-3a4b-5c6d7e8f9a0b"},
-                    {"tag": "OrgnlIntrBkSttlmAmt", "value": "1850.00", "attributes": {"Ccy": "EUR"}},
-                    {"tag": "OrgnlIntrBkSttlmDt", "value": "2026-05-28"},
+                    {
+                      "tag": "CxlId",
+                      "value": "CXL-20260528-001"
+                    },
+                    {
+                      "tag": "OrgnlEndToEndId",
+                      "value": "E2E-SEPA-2026052800001"
+                    },
+                    {
+                      "tag": "OrgnlUETR",
+                      "value": "e5f6a7b8-9c0d-1e2f-3a4b-5c6d7e8f9a0b"
+                    },
+                    {
+                      "tag": "OrgnlIntrBkSttlmAmt",
+                      "value": "1850.00",
+                      "attributes": {
+                        "Ccy": "EUR"
+                      }
+                    },
+                    {
+                      "tag": "OrgnlIntrBkSttlmDt",
+                      "value": "2026-05-28"
+                    },
                     {
                       "tag": "CxlRsnInf",
                       "children": [
-                        {"tag": "Rsn", "children": [{"tag": "Cd", "value": "DUPL"}]},
-                        {"tag": "AddtlInf", "value": "Duplicate payment - original sent via batch file in error"}
+                        {
+                          "tag": "Rsn",
+                          "children": [
+                            {
+                              "tag": "Cd",
+                              "value": "DUPL"
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "AddtlInf",
+                          "value": "Duplicate payment - original sent via batch file in error"
+                        }
                       ]
                     }
                   ]

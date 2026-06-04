@@ -3,3 +3,4 @@ uvicorn[standard]
 pandas
 pydantic
 python-dotenv
+lxml>=5.0.0

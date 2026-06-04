@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { ReactFlow, Background, MarkerType, Edge, Node } from 'reactflow';
-import 'reactflow/dist/style.css';
+import { ReactFlow, Background, MarkerType, Edge, Node } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
 
 const initialNodes: Node[] = [
   {

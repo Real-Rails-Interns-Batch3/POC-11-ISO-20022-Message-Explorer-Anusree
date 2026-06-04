@@ -86,15 +86,6 @@ export default function Home() {
       subDesc: 'SEPA Instant — EUR 184,220',
       active: filters.messageType === 'pain.001',
     },
-    {
-      id: 'camt.054',
-      tag: 'ACCP',
-      tagColor: 'var(--accent-cyan)',
-      title: 'camt.054',
-      desc: 'Credit notification — incoming wire',
-      subDesc: 'CHAPS — GBP 42,000',
-      active: filters.messageType === 'camt.054',
-    },
   ];
 
   return (
@@ -143,7 +134,6 @@ export default function Home() {
                   else if (card.id === 'pacs.008-sepa') net = 'SEPA';
                   else if (card.id === 'pacs.002') net = 'FedNow';
                   else if (card.id === 'pain.001') net = 'SEPA';
-                  else if (card.id === 'camt.054') net = 'CHAPS';
 
                   const typeValue = card.id.startsWith('pacs.008') ? 'pacs.008' : card.id;
                   handleFilterChange({

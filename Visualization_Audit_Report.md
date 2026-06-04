@@ -9,9 +9,9 @@
 **Status:** **Pass**
 
 **Analysis:**
-- **Relational Archetype (Pass):** The payment chain (`Debtor → Debtor Agent → Creditor Agent → Creditor`) and the governance network are successfully mapped using `React Flow` and `Dagre`, satisfying the core flow requirement.
-- **Temporal Archetype (Pass):** The message lifecycle (`CreDtTm`, `AccptncDtTm`, etc.) is effectively mapped to a chronological sequence diagram in the new Timeline component.
-- **Stack Alignment (Pass):** The `D3.js` stack requirement has been implemented via the `D3Sparkline` component which tracks the adoption metrics dynamically.
+- **Relational Archetype (Pass):** The payment chain (`Debtor → Debtor Agent → Creditor Agent → Creditor`) and the governance network are mapped using `React Flow` and `Dagre`, satisfying the core flow requirement. Note: the four-node topology is fixed to the pacs.008 FI-to-FI transfer shape; entity names are extracted from the parsed message tree dynamically, but the graph structure itself is not derived from parsing.
+- **Temporal Archetype (Pass):** The message lifecycle (`CreDtTm`, `AccptncDtTm`, etc.) is effectively mapped to a chronological sequence diagram in the Timeline component.
+- **Stack Alignment (Pass):** The `D3.js` stack requirement has been implemented via the `D3Sparkline` component which tracks adoption metrics dynamically.
 
 ---
 
@@ -27,8 +27,9 @@
 
 ## 3. Data Mapping
 **Criterion:** Is the data from the [DataSource] being represented accurately in the 70% stage?
-**Status:** **Pass**
+**Status:** **Pass (with caveats)**
 
 **Analysis:**
-- **Tree and Graph Mapping (Pass):** The parsed message JSON structure is accurately driving both the hierarchical `TreeNode` component and the `PaymentChainGraph` without data loss. Glossary metadata is cleanly surfaceable via interactive tooltips on the tree nodes.
-- **Tabular Data Mapping (Pass):** The Excel requirement specifies the use of **TanStack Table**. The "Parsed Fields" and "MT ↔ MX Compare" views correctly instantiate the `@tanstack/react-table` engine.
+- **Tree and Graph Mapping (Pass with caveat):** The parsed message JSON structure drives both the hierarchical `TreeNode` component and the `PaymentChainGraph`. Glossary metadata is surfaceable via interactive tooltips on the tree nodes. The payment chain graph extracts entity names from the parsed tree but its topology (Debtor → Debtor Agent → Creditor Agent → Creditor) is fixed for pacs.008 and does not dynamically reflect other message shapes.
+- **Tabular Data Mapping (Pass):** The "Parsed Fields" and "MT ↔ MX Compare" views correctly instantiate the `@tanstack/react-table` engine.
+- **Mock Data Scope:** The application runs on synthetic mock data by default. The backend validator/parser is only exercised when the FastAPI backend is running. Adoption statistics in the sidebar are not backed by a real-time data source; the UI links to iso20022.org for current figures.

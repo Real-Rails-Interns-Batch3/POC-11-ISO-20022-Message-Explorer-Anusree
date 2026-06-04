@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useMemo, useEffect } from 'react';
-import { ReactFlow, Background, MarkerType, Edge, Node, useNodesState, useEdgesState, Position } from 'reactflow';
+import { ReactFlow, Background, MarkerType, Edge, Node, useNodesState, useEdgesState, Position } from '@xyflow/react';
 import dagre from 'dagre';
-import 'reactflow/dist/style.css';
+import '@xyflow/react/dist/style.css';
 import type { ParsedNode } from '@/types';
 
 interface PaymentChainGraphProps {
@@ -50,8 +50,10 @@ export default function PaymentChainGraph({ messageData }: PaymentChainGraphProp
     const nodes: Node[] = [];
     const edges: Edge[] = [];
     
-    // In a real application, we would traverse messageData dynamically. 
-    // For this mock representation, we'll extract the known paths for a typical pacs.008 flow.
+    // The four-node topology (Debtor → Debtor Agent → Creditor Agent → Creditor) is
+    // fixed to the pacs.008 FI-to-FI credit transfer shape.  Entity names are extracted
+    // dynamically by traversing messageData, but the graph structure itself is not parsed
+    // from the message — it reflects the known pacs.008 chain only.
     const extractName = (tag: string) => {
       let foundName = '';
       const traverse = (node: ParsedNode) => {

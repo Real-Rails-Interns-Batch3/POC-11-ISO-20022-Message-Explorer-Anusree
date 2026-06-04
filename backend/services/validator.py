@@ -1,7 +1,11 @@
 """
 ISO 20022 Message Validator
-Validates ISO 20022 messages against schema rules, business rules,
-character set constraints, and network-specific requirements.
+Validates ISO 20022 messages against:
+  rule-000: XSD Schema Compliance (lxml + moov-io/fednow20022 XSDs)
+  rule-001 to rule-011: Structure, business rules, character set, network checks
+
+XSD files are downloaded from https://github.com/moov-io/fednow20022/tree/master/xsd/iso
+(Federal Reserve / MIT licence) and stored in backend/data/schemas/.
 """
 import re
 import json
@@ -10,6 +14,18 @@ from pathlib import Path
 from typing import Optional
 
 DATA_DIR = Path(__file__).parent.parent / "data"
+SCHEMAS_DIR = DATA_DIR / "schemas"
+
+# Namespace → XSD filename mapping (moov-io/fednow20022 ISO XSDs)
+_NS_TO_XSD = {
+    "urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08": "pacs.008.001.08.xsd",
+    "urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10": "pacs.002.001.10.xsd",
+    "urn:iso:std:iso:20022:tech:xsd:pacs.004.001.09": "pacs.004.001.10.xsd",  # closest available
+    "urn:iso:std:iso:20022:tech:xsd:pacs.028.001.03": "pacs.028.001.03.xsd",
+    "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03": None,   # no XSD in moov-io for this version
+    "urn:iso:std:iso:20022:tech:xsd:pain.013.001.07": "pain.013.001.07.xsd",
+    "urn:iso:std:iso:20022:tech:xsd:camt.056.001.08": "camt.056.001.08.xsd",
+}
 
 _rules_cache: Optional[list] = None
 
@@ -47,6 +63,56 @@ def _find_element_text(root: ET.Element, tag: str) -> Optional[str]:
 
 
 # --- Individual validation checks ---
+
+def _check_xsd_compliance(xml_string: str) -> dict:
+    """rule-000: XSD Schema Compliance using real moov-io/fednow20022 schemas."""
+    rule_base = {
+        "ruleId": "rule-000",
+        "ruleName": "XSD Schema Compliance",
+        "source": "moov-io/fednow20022 (Federal Reserve ISO 20022 XSDs, MIT)",
+    }
+    try:
+        from lxml import etree as lxml_etree
+    except ImportError:
+        return {**rule_base, "status": "skipped",
+                "message": "lxml not installed — run: pip install lxml>=5.0.0"}
+
+    # Detect namespace from the Document element
+    ns_match = re.search(r'xmlns=["\']([^"\']+)["\']', xml_string)
+    if not ns_match:
+        return {**rule_base, "status": "skipped",
+                "message": "No XML namespace found — cannot select XSD"}
+
+    ns = ns_match.group(1)
+    xsd_name = _NS_TO_XSD.get(ns)
+
+    if xsd_name is None:
+        return {**rule_base, "status": "skipped",
+                "message": f"No XSD available for namespace {ns.split(':')[-1]}"}
+
+    xsd_path = SCHEMAS_DIR / xsd_name
+    if not xsd_path.exists():
+        return {**rule_base, "status": "skipped",
+                "message": f"XSD file not found: {xsd_name} (run fetch script)"}
+
+    try:
+        with open(xsd_path, "rb") as f:
+            schema_doc = lxml_etree.parse(f)
+        schema = lxml_etree.XMLSchema(schema_doc)
+        doc = lxml_etree.fromstring(xml_string.encode("utf-8"))
+        if schema.validate(doc):
+            return {**rule_base, "status": "passed",
+                    "message": f"Document is valid against {xsd_name}"}
+        else:
+            errors = [str(e) for e in schema.error_log][:3]
+            return {**rule_base, "status": "failed",
+                    "message": "XSD violations: " + " | ".join(errors)}
+    except lxml_etree.XMLSyntaxError as e:
+        return {**rule_base, "status": "failed",
+                "message": f"XML syntax error: {e}"}
+    except Exception as e:
+        return {**rule_base, "status": "skipped",
+                "message": f"XSD validation error: {e}"}
 
 def _check_xml_structure(xml_string: str) -> dict:
     """Rule 001: Valid XML Structure"""
@@ -414,7 +480,10 @@ def validate_message(xml_string: str) -> dict:
     """
     results = []
 
-    # Rule 001: XML structure (always first)
+    # rule-000: Real XSD Schema Compliance (lxml + moov-io XSDs)
+    results.append(_check_xsd_compliance(xml_string))
+
+    # rule-001: XML structure (always first among the custom rules)
     xml_result = _check_xml_structure(xml_string)
     results.append(xml_result)
 

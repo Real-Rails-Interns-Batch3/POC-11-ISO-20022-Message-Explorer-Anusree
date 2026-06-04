@@ -29,9 +29,9 @@ export const MOCK_METADATA: RailMetadata = {
     },
     {
       label: "Validation Rules",
-      value: "14",
+      value: "11",
       trend: "stable",
-      description: "Schema, business rules, character set, and network-specific checks",
+      description: "Schema, business rules, character set, and network-specific checks (11 active rules)",
     },
     {
       label: "Networks Covered",
@@ -107,24 +107,27 @@ export const MOCK_METADATA: RailMetadata = {
   },
   dataSources: [
     {
-      name: "FedNow Service",
-      type: "Public Documentation",
+      name: "moov-io/fednow20022",
+      type: "Open-Source Reference Implementation (MIT)",
       status: "active",
-      description: "Federal Reserve's instant payment service. Native ISO 20022 implementation launched July 2023.",
-      url: "https://www.frbservices.org/financial-services/fednow",
+      description:
+        "FedNow ISO 20022 library maintained by Moov Financial. Contains real sample XML messages published by the Federal Reserve (pacs.008, pacs.002) and official FedNow-constrained XSD schemas used for XSD validation in this explorer.",
+      url: "https://github.com/moov-io/fednow20022",
     },
     {
-      name: "European Payments Council",
-      type: "Public Documentation",
+      name: "salesking/sepa_king",
+      type: "Open-Source Reference Implementation (MIT)",
       status: "active",
-      description: "Governs SEPA payment schemes across 36 European countries.",
-      url: "https://www.europeanpaymentscouncil.eu",
+      description:
+        "Ruby SEPA payment library by SalesKing. Contains EPC-aligned ISO 20022 sample XML (pain.001.001.03) used as the SEPA Credit Transfer Initiation sample in this explorer.",
+      url: "https://github.com/salesking/sepa_king",
     },
     {
       name: "ISO 20022 Repository",
-      type: "Reference",
+      type: "Official Standard Reference",
       status: "active",
-      description: "Official message catalog maintained by SWIFT as Registration Authority.",
+      description:
+        "Official ISO 20022 message catalog maintained by SWIFT as Registration Authority. Definitive source for XSD schemas and field definitions.",
       url: "https://www.iso20022.org",
     },
   ],
@@ -150,7 +153,6 @@ export const MOCK_METADATA: RailMetadata = {
   },
 };
 
-// === Messages ===
 export const MOCK_MESSAGES_LIST: MessageListResponse = {
   count: 8,
   messages: [
@@ -158,21 +160,23 @@ export const MOCK_MESSAGES_LIST: MessageListResponse = {
       id: "msg-001",
       type: "pacs.008.001.08",
       title: "FedNow Customer Credit Transfer",
-      description: "FI-to-FI customer credit transfer via FedNow. Transfers $2,500 from sender to receiver with full structured data.",
+      description: "Real FedNow sample published by the Federal Reserve. Individual A (BankA, ABA 111111111) pays Corporation B (ABA 333333333) USD 51.74 via FedNow, referencing invoice INV34563.",
       network: "FedNow",
       direction: "outbound",
       category: "Credit Transfer",
       status: "settled",
+      dataSource: "Federal Reserve / moov-io/fednow20022 (MIT)",
     },
     {
       id: "msg-002",
       type: "pacs.002.001.10",
       title: "FedNow Payment Accept (ACTC)",
-      description: "Payment status report confirming acceptance of a FedNow credit transfer by the receiving FI.",
+      description: "Real FedNow sample published by the Federal Reserve. Accepts the credit transfer with UETR 8a562c67-ca16-48ba-b074-65581be6f011. InstgAgt ABA 111111111 → InstdAgt ABA 222222222.",
       network: "FedNow",
       direction: "inbound",
       category: "Status Report",
       status: "accepted",
+      dataSource: "Federal Reserve / moov-io/fednow20022 (MIT)",
     },
     {
       id: "msg-003",
@@ -188,11 +192,12 @@ export const MOCK_MESSAGES_LIST: MessageListResponse = {
       id: "msg-004",
       type: "pain.001.001.03",
       title: "SEPA Credit Transfer Initiation",
-      description: "Customer-to-bank payment initiation for EUR 1,850 SEPA credit transfer from Germany to France.",
+      description: "Real EPC-aligned SEPA sample (salesking/sepa_king). Two credit transfers: EUR 6,543.14 + EUR 112.72, Debtor IBAN DE87200500001234567890 → Creditor IBAN DE21500500009876543210 via SPUEDE2UXXX.",
       network: "SEPA",
       direction: "outbound",
       category: "Payment Initiation",
       status: "pending",
+      dataSource: "EPC / salesking/sepa_king (MIT)",
     },
     {
       id: "msg-005",
@@ -234,16 +239,7 @@ export const MOCK_MESSAGES_LIST: MessageListResponse = {
       category: "Cancellation",
       status: "pending",
     },
-    {
-      id: "msg-009",
-      type: "camt.054.001.08",
-      title: "CHAPS Credit Notification",
-      description: "Credit notification for incoming wire via CHAPS.",
-      network: "CHAPS",
-      direction: "inbound",
-      category: "Status Report",
-      status: "accepted",
-    },
+
     {
       id: "msg-010",
       type: "pacs.008.001.08",
@@ -264,9 +260,8 @@ export const MOCK_MESSAGES_LIST: MessageListResponse = {
       "pain.001.001.03",
       "pain.013.001.07",
       "camt.056.001.08",
-      "camt.054.001.08",
     ],
-    networks: ["FedNow", "SEPA", "SWIFT", "CHAPS", "Lynx"],
+    networks: ["FedNow", "SEPA", "SWIFT"],
     directions: ["inbound", "outbound"],
     categories: [
       "Credit Transfer",
@@ -286,80 +281,100 @@ export const MOCK_FULL_MESSAGES = [
     id: "msg-001",
     type: "pacs.008.001.08",
     title: "FedNow Customer Credit Transfer",
-    description: "FI-to-FI customer credit transfer via FedNow instant payments network. Transfers $2,500 from sender to receiver with full structured data.",
+    description: "Real FedNow sample published by the Federal Reserve. Individual A (BankA, ABA 111111111) pays Corporation B (ABA 333333333) USD 51.74 via FedNow, referencing invoice INV34563.",
     network: "FedNow",
     direction: "outbound",
     category: "Credit Transfer",
     status: "settled",
-    rawXml: `<?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.08">
-  <FIToFICstmrCdtTrf>
+    rawXml: `
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd">
+  <CstmrCdtTrfInitn>
     <GrpHdr>
-      <MsgId>FNOW-20260528-CTR-001</MsgId>
-      <CreDtTm>2026-05-28T09:30:00Z</CreDtTm>
-      <NbOfTxs>1</NbOfTxs>
-      <SttlmInf>
-        <SttlmMtd>CLRG</SttlmMtd>
-      </SttlmInf>
+      <MsgId>Message-ID-4711</MsgId>
+      <CreDtTm>2010-11-11T09:30:47.000Z</CreDtTm>
+      <NbOfTxs>2</NbOfTxs>
+      <InitgPty>
+        <Nm>Initiator Name</Nm>
+      </InitgPty>
     </GrpHdr>
-    <CdtTrfTxInf>
-      <PmtId>
-        <InstrId>INSTR-20260528-001</InstrId>
-        <EndToEndId>E2E-FNOW-2026052800001</EndToEndId>
-        <TxId>TXN-FNOW-20260528-001</TxId>
-        <UETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</UETR>
-      </PmtId>
-      <IntrBkSttlmAmt Ccy="USD">2500.00</IntrBkSttlmAmt>
-      <IntrBkSttlmDt>2026-05-28</IntrBkSttlmDt>
-      <InstdAmt Ccy="USD">2500.00</InstdAmt>
-      <ChrgBr>SHAR</ChrgBr>
+    <PmtInf>
+      <PmtInfId>Payment-Information-ID-4711</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <BtchBookg>true</BtchBookg>
+      <NbOfTxs>2</NbOfTxs>
+      <CtrlSum>6655.86</CtrlSum>
+      <PmtTpInf>
+        <SvcLvl>
+          <Cd>SEPA</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt>2010-11-25</ReqdExctnDt>
       <Dbtr>
-        <Nm>Alice Richardson</Nm>
-        <PstlAdr>
-          <StrtNm>1200 Market Street</StrtNm>
-          <TwnNm>Philadelphia</TwnNm>
-          <CtrySubDvsn>PA</CtrySubDvsn>
-          <PstCd>19107</PstCd>
-          <Ctry>US</Ctry>
-        </PstlAdr>
+        <Nm>Debtor Name</Nm>
       </Dbtr>
       <DbtrAcct>
-        <Id><Othr><Id>445566778899</Id></Othr></Id>
+        <Id>
+          <IBAN>DE87200500001234567890</IBAN>
+        </Id>
       </DbtrAcct>
       <DbtrAgt>
         <FinInstnId>
-          <BICFI>CHASUS33</BICFI>
-          <Nm>JPMorgan Chase Bank</Nm>
+          <BIC>BANKDEFFXXX</BIC>
         </FinInstnId>
       </DbtrAgt>
-      <CdtrAgt>
-        <FinInstnId>
-          <BICFI>BOFAUS3N</BICFI>
-          <Nm>Bank of America</Nm>
-        </FinInstnId>
-      </CdtrAgt>
-      <Cdtr>
-        <Nm>Bob Martinez</Nm>
-        <PstlAdr>
-          <StrtNm>500 Boylston Street</StrtNm>
-          <TwnNm>Boston</TwnNm>
-          <CtrySubDvsn>MA</CtrySubDvsn>
-          <PstCd>02116</PstCd>
-          <Ctry>US</Ctry>
-        </PstlAdr>
-      </Cdtr>
-      <CdtrAcct>
-        <Id><Othr><Id>112233445566</Id></Othr></Id>
-      </CdtrAcct>
-      <Purp>
-        <Cd>SUPP</Cd>
-      </Purp>
-      <RmtInf>
-        <Ustrd>Invoice INV-2026-0528 - Consulting Services May 2026</Ustrd>
-      </RmtInf>
-    </CdtTrfTxInf>
-  </FIToFICstmrCdtTrf>
-</Document>`,
+      <ChrgBr>SLEV</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>OriginatorID1234</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">6543.14</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId>
+            <BIC>SPUEDE2UXXX</BIC>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Nm>Creditor Name</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE21500500009876543210</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Unstructured Remittance Information</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>OriginatorID1235</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">112.72</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId>
+            <BIC>SPUEDE2UXXX</BIC>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Nm>Other Creditor Name</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE21500500001234567897</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Unstructured Remittance Information</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document>
+  `,
     parsed: {
       tag: "Document",
       depth: 0,
@@ -500,37 +515,90 @@ export const MOCK_FULL_MESSAGES = [
     id: "msg-002",
     type: "pacs.002.001.10",
     title: "FedNow Payment Accept (ACTC)",
-    description: "Payment status report confirming acceptance of a FedNow credit transfer by the receiving financial institution.",
+    description: "Real FedNow sample published by the Federal Reserve. Accepts the credit transfer with UETR 8a562c67-ca16-48ba-b074-65581be6f011. InstgAgt ABA 111111111 → InstdAgt ABA 222222222.",
     network: "FedNow",
     direction: "inbound",
     category: "Status Report",
     status: "accepted",
-    rawXml: `<?xml version="1.0" encoding="UTF-8"?>
+    rawXml: `
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.002.001.10">
-  <FIToFIPmtStsRpt>
-    <GrpHdr>
-      <MsgId>FNOW-STS-20260528-001</MsgId>
-      <CreDtTm>2026-05-28T09:30:05Z</CreDtTm>
-    </GrpHdr>
-    <TxInfAndSts>
-      <OrgnlInstrId>INSTR-20260528-001</OrgnlInstrId>
-      <OrgnlEndToEndId>E2E-FNOW-2026052800001</OrgnlEndToEndId>
-      <OrgnlUETR>eb6305c9-1f7a-4c3b-8a2d-5e9f1b3c7d4a</OrgnlUETR>
-      <TxSts>ACTC</TxSts>
-      <AccptncDtTm>2026-05-28T09:30:04Z</AccptncDtTm>
-      <InstgAgt>
-        <FinInstnId>
-          <BICFI>BOFAUS3N</BICFI>
-        </FinInstnId>
-      </InstgAgt>
-      <InstdAgt>
-        <FinInstnId>
-          <BICFI>CHASUS33</BICFI>
-        </FinInstnId>
-      </InstdAgt>
-    </TxInfAndSts>
-  </FIToFIPmtStsRpt>
-</Document>`,
+
+                <FIToFIPmtStsRpt>
+
+                    <GrpHdr>
+
+                        <MsgId>20230604111111111Sc01Step3MsgId</MsgId>
+
+                        <CreDtTm>2023-06-04T10:55:30-04:00</CreDtTm>
+
+                    </GrpHdr>
+
+                    <TxInfAndSts>
+
+                        <OrgnlGrpInf>
+
+                            <OrgnlMsgId>20230604222222222Sc01Step1MsgId</OrgnlMsgId>
+
+                            <OrgnlMsgNmId>pacs.008.001.08</OrgnlMsgNmId>
+
+                            <OrgnlCreDtTm>2023-06-04T10:55:26-04:00</OrgnlCreDtTm>
+
+                        </OrgnlGrpInf>
+
+                        <OrgnlInstrId>Scenario01InstrId001</OrgnlInstrId>
+
+                        <OrgnlEndToEndId>Scenario01EtoEId001</OrgnlEndToEndId>
+
+                        <OrgnlUETR>8a562c67-ca16-48ba-b074-65581be6f011</OrgnlUETR>
+
+                        <TxSts>ACTC</TxSts>
+
+                        <InstgAgt>
+
+                            <FinInstnId>
+
+                                <ClrSysMmbId>
+
+                                    <ClrSysId>
+
+                                        <Cd>USABA</Cd>
+
+                                    </ClrSysId>
+
+                                    <MmbId>111111111</MmbId>
+
+                                </ClrSysMmbId>
+
+                            </FinInstnId>
+
+                        </InstgAgt>
+
+                        <InstdAgt>
+
+                            <FinInstnId>
+
+                                <ClrSysMmbId>
+
+                                    <ClrSysId>
+
+                                        <Cd>USABA</Cd>
+
+                                    </ClrSysId>
+
+                                    <MmbId>222222222</MmbId>
+
+                                </ClrSysMmbId>
+
+                            </FinInstnId>
+
+                        </InstdAgt>
+
+                    </TxInfAndSts>
+
+                </FIToFIPmtStsRpt>
+
+            </Document>
+  `,
     parsed: {
       tag: "Document",
       depth: 0,
@@ -669,81 +737,100 @@ export const MOCK_FULL_MESSAGES = [
     id: "msg-004",
     type: "pain.001.001.03",
     title: "SEPA Credit Transfer Initiation",
-    description: "Customer-to-bank payment initiation for EUR 1,850 SEPA credit transfer from Germany to France.",
+    description: "Real EPC-aligned SEPA sample (salesking/sepa_king). Two CTs: EUR 6,543.14 + EUR 112.72, Debtor IBAN DE87200500001234567890 → Creditor via SPUEDE2UXXX.",
     network: "SEPA",
     direction: "outbound",
     category: "Payment Initiation",
     status: "pending",
-    rawXml: `<?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    rawXml: `
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd">
   <CstmrCdtTrfInitn>
     <GrpHdr>
-      <MsgId>SEPA-20260528-PI-001</MsgId>
-      <CreDtTm>2026-05-28T08:00:00Z</CreDtTm>
-      <NbOfTxs>1</NbOfTxs>
-      <CtrlSum>1850.00</CtrlSum>
+      <MsgId>Message-ID-4711</MsgId>
+      <CreDtTm>2010-11-11T09:30:47.000Z</CreDtTm>
+      <NbOfTxs>2</NbOfTxs>
       <InitgPty>
-        <Nm>Mueller Technologies GmbH</Nm>
+        <Nm>Initiator Name</Nm>
       </InitgPty>
     </GrpHdr>
     <PmtInf>
-      <PmtInfId>PMTINF-SEPA-001</PmtInfId>
+      <PmtInfId>Payment-Information-ID-4711</PmtInfId>
       <PmtMtd>TRF</PmtMtd>
-      <ReqdExctnDt>2026-05-29</ReqdExctnDt>
+      <BtchBookg>true</BtchBookg>
+      <NbOfTxs>2</NbOfTxs>
+      <CtrlSum>6655.86</CtrlSum>
+      <PmtTpInf>
+        <SvcLvl>
+          <Cd>SEPA</Cd>
+        </SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt>2010-11-25</ReqdExctnDt>
       <Dbtr>
-        <Nm>Mueller Technologies GmbH</Nm>
-        <PstlAdr>
-          <StrtNm>Unter den Linden 10</StrtNm>
-          <TwnNm>Berlin</TwnNm>
-          <PstCd>10117</PstCd>
-          <Ctry>DE</Ctry>
-        </PstlAdr>
+        <Nm>Debtor Name</Nm>
       </Dbtr>
       <DbtrAcct>
-        <Id><IBAN>DE89370400440532013000</IBAN></Id>
+        <Id>
+          <IBAN>DE87200500001234567890</IBAN>
+        </Id>
       </DbtrAcct>
       <DbtrAgt>
         <FinInstnId>
-          <BICFI>DEUTDEDB</BICFI>
-          <Nm>Deutsche Bank</Nm>
+          <BIC>BANKDEFFXXX</BIC>
         </FinInstnId>
       </DbtrAgt>
+      <ChrgBr>SLEV</ChrgBr>
       <CdtTrfTxInf>
         <PmtId>
-          <EndToEndId>E2E-SEPA-2026052800001</EndToEndId>
+          <EndToEndId>OriginatorID1234</EndToEndId>
         </PmtId>
         <Amt>
-          <InstdAmt Ccy="EUR">1850.00</InstdAmt>
+          <InstdAmt Ccy="EUR">6543.14</InstdAmt>
         </Amt>
-        <ChrgBr>SLEV</ChrgBr>
         <CdtrAgt>
           <FinInstnId>
-            <BICFI>BNPAFRPP</BICFI>
-            <Nm>BNP Paribas</Nm>
+            <BIC>SPUEDE2UXXX</BIC>
           </FinInstnId>
         </CdtrAgt>
         <Cdtr>
-          <Nm>Dupont Consulting SARL</Nm>
-          <PstlAdr>
-            <StrtNm>12 Rue de la Paix</StrtNm>
-            <TwnNm>Paris</TwnNm>
-            <PstCd>75001</PstCd>
-            <Ctry>FR</Ctry>
-          </PstlAdr>
+          <Nm>Creditor Name</Nm>
         </Cdtr>
         <CdtrAcct>
-          <Id><IBAN>FR7630006000011234567890189</IBAN></Id>
+          <Id>
+            <IBAN>DE21500500009876543210</IBAN>
+          </Id>
         </CdtrAcct>
-        <Purp>
-          <Cd>SUPP</Cd>
-        </Purp>
         <RmtInf>
-          <Ustrd>Invoice INV-FR-2026-0528 - IT Consulting May 2026</Ustrd>
+          <Ustrd>Unstructured Remittance Information</Ustrd>
+        </RmtInf>
+      </CdtTrfTxInf>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>OriginatorID1235</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">112.72</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId>
+            <BIC>SPUEDE2UXXX</BIC>
+          </FinInstnId>
+        </CdtrAgt>
+        <Cdtr>
+          <Nm>Other Creditor Name</Nm>
+        </Cdtr>
+        <CdtrAcct>
+          <Id>
+            <IBAN>DE21500500001234567897</IBAN>
+          </Id>
+        </CdtrAcct>
+        <RmtInf>
+          <Ustrd>Unstructured Remittance Information</Ustrd>
         </RmtInf>
       </CdtTrfTxInf>
     </PmtInf>
   </CstmrCdtTrfInitn>
-</Document>`,
+</Document>
+  `,
     parsed: {
       tag: "Document",
       depth: 0,
@@ -1248,63 +1335,6 @@ export const MOCK_FULL_MESSAGES = [
         },
       ],
     },
-  },
-  {
-    id: "msg-009",
-    type: "camt.054.001.08",
-    title: "CHAPS Credit Notification",
-    description: "Credit notification for incoming wire via CHAPS.",
-    network: "CHAPS",
-    direction: "inbound",
-    category: "Status Report",
-    status: "accepted",
-    rawXml: `<?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.054.001.08">
-  <BkToCstmrDbtCdtNtfctn>
-    <GrpHdr>
-      <MsgId>CHAPS-NTF-20260528-01</MsgId>
-      <CreDtTm>2026-05-28T14:30:00Z</CreDtTm>
-    </GrpHdr>
-    <Ntfctn>
-      <Id>NTF-CHAPS-001</Id>
-      <CreDtTm>2026-05-28T14:30:00Z</CreDtTm>
-      <Acct>
-        <Id><IBAN>GB29MIDL40051566778899</IBAN></Id>
-      </Acct>
-      <Ntry>
-        <NtryRef>ENTRY-001</NtryRef>
-        <Amt Ccy="GBP">42000.00</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts>BOOK</Sts>
-        <BookgDt>
-          <Dt>2026-05-28</Dt>
-        </BookgDt>
-      </Ntry>
-    </Ntfctn>
-  </BkToCstmrDbtCdtNtfctn>
-</Document>`,
-    parsed: {
-      tag: "Document",
-      depth: 0,
-      path: "Document",
-      children: [
-        {
-          tag: "BkToCstmrDbtCdtNtfctn",
-          depth: 1,
-          path: "Document/BkToCstmrDbtCdtNtfctn",
-          children: [
-            {
-              tag: "GrpHdr",
-              depth: 2,
-              path: "Document/BkToCstmrDbtCdtNtfctn/GrpHdr",
-              children: [
-                { tag: "MsgId", depth: 3, path: "Document/BkToCstmrDbtCdtNtfctn/GrpHdr/MsgId", value: "CHAPS-NTF-20260528-01" },
-              ]
-            }
-          ]
-        }
-      ]
-    }
   },
   {
     id: "msg-010",

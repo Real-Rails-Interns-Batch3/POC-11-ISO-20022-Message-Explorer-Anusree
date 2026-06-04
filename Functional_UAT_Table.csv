@@ -1,7 +1,6 @@
 Test Category,Test Case,Expected Result,Pass/Fail
 The Handshake,Select the 'FedNow pacs.008' card in the top message carousel (70% area).,"The 30% right sidebar instantly updates its metadata, active filters, and context to reflect the 'FedNow' network and 'pacs.008' message type.",PASS
+The Handshake,Click on a nested XML tag in the Tree View (e.g. 'DbtrAgt').,The glossary cross-reference tooltip appears detailing the definition data type and mandatory status from the mock-data dictionary.,PASS
 Filter Logic,Toggle the 'SEPA' and 'Credit Transfer' filters in the sidebar.,The main stage (70% area) filters the message cards to exclusively display SEPA credit transfer payloads (e.g. pacs.008 SEPA and pain.001).,PASS
-Intelligence Value,Observe the 'Who Controls the Rail' section in the sidebar.,The panel visually renders the Governance Graph (React Flow) showcasing 'ISO TC 68', 'SWIFT', and 'Central Banks', accurately reflecting the provided JSON DataSource findings.,PASS
-The Handshake,Click on a nested XML tag in the Tree View (e.g. 'DbtrAgt').,"The glossary cross-reference tooltip appears, detailing the definition, data type, and mandatory status from the mock-data dictionary.",PASS
-Filter Logic,Change the 'Message Type' filter to 'camt.054'.,The message cards instantly filter to display only the CHAPS Credit Notification payload.,PASS
-Intelligence Value,Verify the Global Adoption section in the sidebar.,The 78% YoY adoption metric is displayed alongside a working D3.js sparkline and cites the SWIFT source URL and 'As of' date.,PASS
+Intelligence Value,Observe the 'Who Controls the Rail' section in the sidebar.,The panel visually renders the Governance Graph (React Flow) showcasing 'ISO TC 68' and 'SWIFT' and 'Central Banks' accurately reflecting the provided JSON DataSource findings.,PASS
+Intelligence Value,Verify the Global Adoption section in the sidebar.,A descriptive note about ISO 20022 adoption is shown with a link to iso20022.org. No hardcoded adoption percentage is displayed.,PASS
