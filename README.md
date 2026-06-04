@@ -18,7 +18,7 @@ The **ISO 20022 Message Explorer** is a high-performance, visually rich analytic
 
 This PoC covers **FedNow (US)** and **SEPA (EU)** networks only.
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Framework:** React / Next.js
 - **Language:** TypeScript
@@ -69,6 +69,40 @@ copy .env.example .env    # Windows
 uvicorn main:app --reload --port 8000
 ```
 The API will be available at [http://localhost:8000](http://localhost:8000) with interactive docs at [http://localhost:8000/docs](http://localhost:8000/docs).
+# Data Sources
+
+All sample XML in this project comes from real published sources — not hand-written synthetic data.
+
+| Message | Source | Licence |
+|---|---|---|
+| `pacs.008` — FedNow Credit Transfer | [moov-io/fednow20022](https://github.com/moov-io/fednow20022) — Federal Reserve sample | MIT |
+| `pacs.002` — FedNow Payment Status | [moov-io/fednow20022](https://github.com/moov-io/fednow20022) — Federal Reserve sample | MIT |
+| `pain.001` — SEPA Credit Transfer Initiation | [salesking/sepa_king](https://github.com/salesking/sepa_king) — EPC-aligned sample | MIT |
+| XSD schemas | [moov-io/fednow20022/xsd/iso](https://github.com/moov-io/fednow20022/tree/master/xsd/iso) | MIT |
+| ISO 20022 standard reference | [iso20022.org](https://www.iso20022.org) | ISO |
+
+> **No API keys required.** All data is sourced from public, freely accessible GitHub repositories under MIT licence.
+
+---
+
+## UI Components
+
+| Component | File | Purpose |
+|---|---|---|
+| Root Page | `app/page.tsx` | Message type cards — entry point to the explorer |
+| Sidebar | `Sidebar.tsx` | Left-rail: network stats, data sources, message type guide |
+| Message Explorer | `MessageExplorer.tsx` | 70/30 split: XML tree (left) + detail panels (right) |
+| Payload Library | `PayloadLibrary.tsx` | Searchable, filterable message browser |
+| Validation View | `ValidationView.tsx` | Paste XML → run 12 rules → see per-rule results |
+| Payment Chain Graph | `PaymentChainGraph.tsx` | React Flow graph: Debtor → DbtrAgt → CdtrAgt → Creditor |
+| Governance Graph | `GovernanceGraph.tsx` | ISO 20022 authority hierarchy visualisation |
+| Glossary View | `GlossaryView.tsx` | Tag search with definitions, types, formats |
+| Comparison View | `ComparisonView.tsx` | MT vs MX field-by-field mapping table |
+| Parsed Fields Table | `ParsedFieldsTable.tsx` | TanStack Table flat field list |
+| Message Timeline | `MessageTimeline.tsx` | D3.js temporal activity chart |
+
+---
+
 
 ##  Testing and Validation
 The explorer ships with pre-generated UAT and VAR reports:
