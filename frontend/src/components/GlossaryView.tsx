@@ -104,7 +104,7 @@ export default function GlossaryView() {
   }
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in w-full h-full">
+    <div className="flex flex-col gap-8 animate-fade-in w-full h-full">
       {/* Search Bar */}
       <div className="relative w-full">
         <Search className="absolute left-3 top-3.5 w-4 h-4 text-[var(--text-tertiary)]" />
@@ -126,7 +126,7 @@ export default function GlossaryView() {
       </div>
 
       <div className="w-full overflow-y-auto">
-        <table className="w-full text-left text-[12.5px]">
+        <table className="w-full text-left text-[12.5px] border-separate" style={{ borderSpacing: '0 10px' }}>
           <thead>
             <tr className="border-b border-[var(--border-slate)] text-[10px] font-mono tracking-widest text-[var(--text-tertiary)] uppercase">
               <th className="py-3 font-semibold w-[220px]">TAG</th>
@@ -144,8 +144,8 @@ export default function GlossaryView() {
                 )}
               >
                 {/* TAG */}
-                <td className="py-4 align-top pr-4">
-                  <div className="flex flex-col gap-0.5">
+                <td style={{ paddingTop: '24px', paddingBottom: '24px' }} className="align-top pr-4">
+                  <div className="flex flex-col gap-1">
                     <span className="font-mono text-[var(--accent-cyan)] font-semibold text-[12px]">
                       {row.xmlTag}
                     </span>
@@ -156,8 +156,8 @@ export default function GlossaryView() {
                 </td>
 
                 {/* NAME / TYPE */}
-                <td className="py-4 align-top pr-4">
-                  <div className="flex flex-col gap-0.5">
+                <td style={{ paddingTop: '24px', paddingBottom: '24px' }} className="align-top pr-4">
+                  <div className="flex flex-col gap-1">
                     <span className="text-[var(--text-primary)] font-medium">
                       {row.name}
                     </span>
@@ -173,12 +173,12 @@ export default function GlossaryView() {
                 </td>
 
                 {/* DESCRIPTION */}
-                <td className="py-4 align-top pr-6 text-[var(--text-secondary)] leading-relaxed text-[12px]">
+                <td style={{ paddingTop: '24px', paddingBottom: '24px' }} className="align-top pr-6 text-[var(--text-secondary)] leading-[1.75] text-[12.5px]">
                   {row.definition}
                 </td>
 
                 {/* LEGACY MT */}
-                <td className="py-4 align-top">
+                <td style={{ paddingTop: '24px', paddingBottom: '24px' }} className="align-top">
                   <div className="flex items-start justify-between">
                     <span className="font-mono text-[11px] text-[var(--accent-indigo)] whitespace-pre-line leading-relaxed">
                       {getLegacyMt(row.xmlTag)}

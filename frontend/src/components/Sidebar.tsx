@@ -57,20 +57,20 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
   }
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto px-6 py-6 pb-20 gap-10">
+    <div className="flex flex-col h-full overflow-y-auto gap-14" style={{ padding: '36px 32px 96px 32px' }}>
       
       {/* A - SNAPSHOT */}
-      <div className="flex flex-col gap-4 animate-fade-in" style={{ animationDelay: '50ms' }}>
+      <div className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '50ms' }}>
         <h3 className="text-[10px] font-mono tracking-widest text-[var(--accent-cyan)] font-semibold uppercase flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_6px_var(--accent-cyan)]"></span>
           A · SNAPSHOT
         </h3>
         
-        <div className="flex flex-col gap-4 border border-[var(--border-slate)] rounded-xl p-5 bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
+        <div className="flex flex-col gap-6 border border-[var(--border-slate)] rounded-xl bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden" style={{ padding: '28px' }}>
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[rgba(56,189,248,0.03)] to-transparent pointer-events-none"></div>
           
-          <span className="text-[10px] font-mono text-[var(--text-tertiary)] uppercase tracking-wider mb-1 block relative z-10">Global ISO 20022 Adoption</span>
-          <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed relative z-10 mt-1">
+          <span className="text-[10px] font-mono text-[var(--text-tertiary)] uppercase tracking-wider block relative z-10" style={{ marginBottom: '8px' }}>Global ISO 20022 Adoption</span>
+          <p className="text-[12.5px] text-[var(--text-secondary)] leading-[1.7] relative z-10" style={{ marginTop: '4px' }}>
             ISO 20022 adoption is accelerating across major payment rails. FedNow (US), SEPA (EU),
             and SWIFT CBPR+ are all live on ISO 20022. For current figures see{' '}
             <a
@@ -84,20 +84,20 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
             .
           </p>
 
-          <div className="grid grid-cols-3 gap-2 mt-2 relative z-10 border-t border-[rgba(255,255,255,0.05)] pt-4">
-            <div className="flex flex-col gap-1">
+          <div className="grid grid-cols-3 gap-4 relative z-10 border-t border-[rgba(255,255,255,0.05)]" style={{ marginTop: '16px', paddingTop: '24px' }}>
+            <div className="flex flex-col gap-2.5">
               <span className="text-[9px] font-mono text-[var(--text-tertiary)] uppercase tracking-widest">Type</span>
-              <span className="text-[11px] font-mono text-[var(--accent-cyan)] bg-[rgba(56,189,248,0.05)] px-2 py-1 rounded border border-[rgba(56,189,248,0.1)] inline-block w-fit">
+              <span className="text-[11px] font-mono text-[var(--accent-cyan)] bg-[rgba(56,189,248,0.05)] px-2.5 py-1.5 rounded border border-[rgba(56,189,248,0.1)] inline-block w-fit">
                 {currentType}
               </span>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2.5">
               <span className="text-[9px] font-mono text-[var(--text-tertiary)] uppercase tracking-widest">Scheme</span>
-              <span className="text-[11px] font-mono text-[var(--text-primary)] bg-[var(--surface-navy)] px-2 py-1 rounded border border-[var(--border-slate)] inline-block w-fit">
+              <span className="text-[11px] font-mono text-[var(--text-primary)] bg-[var(--surface-navy)] px-2.5 py-1.5 rounded border border-[var(--border-slate)] inline-block w-fit">
                 {currentScheme}
               </span>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2.5">
               <span className="text-[9px] font-mono text-[var(--text-tertiary)] uppercase tracking-widest">Status</span>
               <span 
                 className="text-[11px] font-mono px-2 py-1 rounded border inline-block w-fit"
@@ -111,28 +111,28 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
       </div>
 
       {showWhyThisMatters && (
-        <div className="flex flex-col gap-4 animate-fade-in mt-2" style={{ animationDelay: '100ms' }}>
+        <div className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '100ms' }}>
           <h3 className="text-[10px] font-mono tracking-widest text-[var(--accent-cyan)] font-semibold uppercase flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_6px_var(--accent-cyan)]"></span>
             B · WHY THIS MATTERS
           </h3>
           
-          <div className="flex flex-col gap-4 border border-[var(--border-slate)] rounded-xl p-5 bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
+          <div className="flex flex-col gap-6 border border-[var(--border-slate)] rounded-xl bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden" style={{ padding: '28px' }}>
             <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[rgba(56,189,248,0.03)] to-transparent pointer-events-none"></div>
             
-            <p className="text-[12.5px] text-[var(--text-primary)] font-medium leading-relaxed relative z-10 border-b border-[rgba(255,255,255,0.05)] pb-3">
+            <p className="text-[13px] text-[var(--text-primary)] font-medium leading-[1.7] relative z-10 border-b border-[rgba(255,255,255,0.05)]" style={{ paddingBottom: '20px' }}>
               {metadata.whyThisMatters.headline}
             </p>
 
-            <ul className="flex flex-col gap-3 relative z-10">
-              <li className="flex items-start gap-2.5 text-[12px] text-[var(--text-secondary)] bg-[var(--surface-navy)] p-3 rounded-lg border border-[rgba(255,255,255,0.02)]">
+            <ul className="flex flex-col gap-5 relative z-10">
+              <li className="flex items-start gap-3 text-[12.5px] text-[var(--text-secondary)] bg-[var(--surface-navy)] rounded-lg border border-[rgba(255,255,255,0.02)]" style={{ padding: '18px' }}>
                 <span className="text-[var(--accent-cyan)] font-mono text-lg leading-none mt-[-2px]">›</span> 
-                <span className="leading-relaxed">{metadata.whyThisMatters.keyInsight}</span>
+                <span className="leading-[1.7]">{metadata.whyThisMatters.keyInsight}</span>
               </li>
               {metadata.whyThisMatters.content.map((c, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-[12px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+                <li key={i} className="flex items-start gap-3 text-[12.5px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
                   <span className="text-[var(--accent-cyan)] font-mono opacity-50">›</span> 
-                  <span className="leading-relaxed">{c}</span>
+                  <span className="leading-[1.7]">{c}</span>
                 </li>
               ))}
             </ul>
@@ -141,36 +141,36 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
       )}
 
       {/* C - WHO CONTROLS THE RAIL (Common) */}
-      <div className="flex flex-col gap-4 animate-fade-in" style={{ animationDelay: '200ms' }}>
+      <div className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <h3 className="text-[10px] font-mono tracking-widest text-[var(--accent-cyan)] font-semibold uppercase flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_6px_var(--accent-cyan)]"></span>
           C · WHO CONTROLS THE RAIL
         </h3>
         
-        <div className="flex flex-col gap-4 border border-[var(--border-slate)] rounded-xl p-5 bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
+        <div className="flex flex-col gap-6 border border-[var(--border-slate)] rounded-xl bg-[rgba(3,7,18,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden" style={{ padding: '28px' }}>
           {/* Subtle gradient background for premium feel */}
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[rgba(56,189,248,0.03)] to-transparent pointer-events-none"></div>
 
-          <p className="text-[12.5px] text-[var(--text-secondary)] leading-relaxed relative z-10">
+          <p className="text-[12.5px] text-[var(--text-secondary)] leading-[1.7] relative z-10" style={{ marginBottom: '6px' }}>
             {metadata.whoControlsTheRail.summary}
           </p>
 
-          <div className="relative z-10 mt-1 h-[300px] border border-[var(--border-slate)] rounded-lg bg-[var(--bg-obsidian)] overflow-hidden">
+          <div className="relative z-10 h-[300px] border border-[var(--border-slate)] rounded-lg bg-[var(--bg-obsidian)] overflow-hidden" style={{ marginTop: '12px' }}>
             <GovernanceGraph />
           </div>
         </div>
       </div>
 
       {/* D - FILTERS */}
-      <div className="flex flex-col gap-4 animate-fade-in" style={{ animationDelay: '100ms' }}>
+      <div className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '100ms' }}>
         <h3 className="text-[10px] font-mono tracking-widest text-[var(--accent-cyan)] font-semibold uppercase flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_6px_var(--accent-cyan)]"></span>
           D · FILTERS
         </h3>
         
-        <div className="flex flex-col gap-4 border border-[var(--border-slate)] rounded-lg p-4 bg-[rgba(3,7,18,0.3)]">
+        <div className="flex flex-col gap-6 border border-[var(--border-slate)] rounded-lg bg-[rgba(3,7,18,0.3)]" style={{ padding: '24px' }}>
           
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-[var(--text-tertiary)] uppercase">MESSAGE TYPE</span>
             <div className="flex flex-wrap gap-2">
               <span 
@@ -199,7 +199,7 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-[var(--text-tertiary)] uppercase">SCHEME</span>
             <div className="flex flex-wrap gap-2">
               <span 
@@ -232,13 +232,13 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
       </div>
 
       {/* E - SAMPLE DATA */}
-      <div className="flex flex-col gap-4 animate-fade-in" style={{ animationDelay: '200ms' }}>
+      <div className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '200ms' }}>
         <h3 className="text-[10px] font-mono tracking-widest text-[var(--accent-cyan)] font-semibold uppercase flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_6px_var(--accent-cyan)]"></span>
           E · SAMPLE DATA
         </h3>
         
-        <p className="text-[12.5px] text-[var(--text-secondary)] leading-relaxed">
+        <p className="text-[12.5px] text-[var(--text-secondary)] leading-[1.7]">
           Download the current payload as a standalone ISO 20022 JSON sample. All values are synthetic.
         </p>
 
@@ -256,8 +256,8 @@ export default function Sidebar({ activeTab, metadata, filters, onFilterChange }
       </div>
 
       {/* Footer Disclaimer */}
-      <div className="mt-auto pt-10 pb-4">
-        <p className="text-[10px] font-mono text-[var(--text-tertiary)] leading-relaxed text-justify opacity-70">
+      <div className="mt-auto pt-12 pb-6">
+        <p className="text-[10px] font-mono text-[var(--text-tertiary)] leading-[1.8] text-justify opacity-70">
           Data shown is synthetic and labeled for demonstration. When live FedNow / EPC feeds are unavailable the explorer falls back to local mock data so the terminal remains operational.
         </p>
       </div>

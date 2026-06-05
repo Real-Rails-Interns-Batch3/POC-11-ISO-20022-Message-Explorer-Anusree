@@ -95,18 +95,18 @@ export default function ValidationView() {
     : [];
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-8 animate-fade-in">
       {/* Header */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 mb-2">
         <ShieldCheck className="w-5 h-5" style={{ color: 'var(--accent-cyan)' }} />
-        <h2 className="text-lg font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }}>
+        <h2 className="text-[18px] font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }}>
           Message Validation Sandbox
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Side: Input area */}
-        <div className="lg:col-span-6 flex flex-col gap-3">
+        <div className="lg:col-span-6 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
               Input XML Payload
@@ -124,7 +124,7 @@ export default function ValidationView() {
             value={xmlInput}
             onChange={(e) => setXmlInput(e.target.value)}
             placeholder="Paste your ISO 20022 XML message here..."
-            className="w-full h-[400px] p-4 bg-[var(--bg-obsidian)] border border-[var(--border-slate)] rounded-lg text-xs font-mono text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent-cyan)] transition-colors resize-none overflow-y-auto"
+            className="w-full h-[420px] p-5 bg-[var(--bg-obsidian)] border border-[var(--border-slate)] rounded-lg text-xs font-mono text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent-cyan)] transition-colors resize-none overflow-y-auto"
           />
 
           <div className="flex gap-2.5">
@@ -156,13 +156,13 @@ export default function ValidationView() {
         </div>
 
         {/* Right Side: Results */}
-        <div className="lg:col-span-6 flex flex-col gap-4">
+        <div className="lg:col-span-6 flex flex-col gap-5">
           <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-tertiary)]">
             Validation Checklist
           </span>
 
           {results ? (
-            <div className="flex flex-col gap-4 animate-fade-in">
+            <div className="flex flex-col gap-5 animate-fade-in">
               {/* Summary Bar */}
               <div
                 className={cn(
@@ -197,7 +197,7 @@ export default function ValidationView() {
               </div>
 
               {/* Rules List */}
-              <div className="space-y-2.5 max-h-[350px] overflow-y-auto pr-1">
+              <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
                 {sortedResults.map((r) => (
                   <div
                     key={r.ruleId}
@@ -221,7 +221,7 @@ export default function ValidationView() {
                           {r.status}
                         </span>
                       </div>
-                      <p className="text-[11px] text-[var(--text-secondary)] mt-1 leading-relaxed">
+                      <p className="text-[11.5px] text-[var(--text-secondary)] mt-1.5 leading-[1.7]">
                         {r.message}
                       </p>
                     </div>
@@ -231,14 +231,14 @@ export default function ValidationView() {
             </div>
           ) : (
             /* Empty State */
-            <div className="flex flex-col items-center justify-center h-[400px] border border-[var(--border-slate)] border-dashed rounded-lg p-6 text-center">
+            <div className="flex flex-col items-center justify-center h-[420px] border border-[var(--border-slate)] border-dashed rounded-lg p-8 text-center">
               <div className="w-12 h-12 rounded-xl bg-[var(--surface-navy)] border border-[var(--border-slate)] flex items-center justify-center mb-4">
                 <FileText className="w-5 h-5 text-[var(--accent-cyan)] opacity-60" />
               </div>
               <p className="text-xs font-semibold text-[var(--text-secondary)] mb-1">
                 Awaiting XML Input
               </p>
-              <p className="text-[11px] text-[var(--text-tertiary)] max-w-xs leading-relaxed">
+              <p className="text-[11.5px] text-[var(--text-tertiary)] max-w-xs leading-[1.75]">
                 Paste an ISO 20022 XML message in the editor and click &quot;Validate Message&quot; to test compliance against 11 critical schema & network rules.
               </p>
             </div>

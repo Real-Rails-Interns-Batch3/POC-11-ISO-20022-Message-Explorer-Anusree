@@ -60,11 +60,11 @@ export default function PayloadLibrary() {
   };
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
+    <div className="flex flex-col gap-8 animate-fade-in">
       {/* Header */}
       <div className="flex items-center gap-3">
         <FileCode className="w-5 h-5" style={{ color: 'var(--accent-cyan)' }} />
-        <h2 className="text-lg font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }}>
+        <h2 className="text-[18px] font-semibold tracking-tight" style={{ color: 'var(--text-primary)' }}>
           Sample Payload Library
         </h2>
       </div>
@@ -85,8 +85,8 @@ export default function PayloadLibrary() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Filter messages by type, title, or keyword..."
-            className="w-full bg-transparent py-2 pl-10 pr-4 text-xs outline-none"
-            style={{ color: 'var(--text-primary)' }}
+            className="w-full bg-transparent pl-10 pr-4 text-sm outline-none"
+            style={{ color: 'var(--text-primary)', paddingTop: '14px', paddingBottom: '14px' }}
           />
         </div>
 
@@ -94,11 +94,12 @@ export default function PayloadLibrary() {
         <select
           value={networkFilter}
           onChange={(e) => setNetworkFilter(e.target.value)}
-          className="text-xs rounded-lg px-3 py-2 outline-none transition-colors duration-200 min-w-[140px]"
+          className="text-sm rounded-lg outline-none transition-colors duration-200 min-w-[160px]"
           style={{
             background: 'var(--surface-navy)',
             color: 'var(--text-primary)',
             border: '1px solid var(--border-slate)',
+            padding: '14px 16px',
           }}
           onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--accent-cyan)')}
           onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--border-slate)')}
@@ -130,7 +131,7 @@ export default function PayloadLibrary() {
       )}
 
       {/* Payload Grid */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {filteredMessages.map((msg) => {
           const isExpanded = expandedId === msg.id;
           const isCopied = copiedId === msg.id;
@@ -139,12 +140,13 @@ export default function PayloadLibrary() {
             <div
               key={msg.id}
               className={cn(
-                'glass-card p-6 transition-all duration-300 flex flex-col',
+                'glass-card transition-all duration-300 flex flex-col',
                 isExpanded ? 'xl:col-span-2' : ''
               )}
+              style={{ padding: '32px' }}
             >
               {/* Header Info */}
-              <div className="flex items-start justify-between gap-3 mb-4">
+              <div style={{ marginBottom: '20px' }} className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="badge badge-cyan text-[10px] font-mono">{msg.type}</span>
                   <span className={cn('badge text-[10px]', getNetworkColor(msg.network))}>
@@ -168,19 +170,21 @@ export default function PayloadLibrary() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-[15px] font-semibold text-[var(--text-primary)] mb-1.5">
+              <h3 style={{ marginBottom: '14px' }} className="text-[15px] font-semibold text-[var(--text-primary)]">
                 {msg.title}
               </h3>
               <p className={cn(
-                "text-[13px] text-[var(--text-secondary)] leading-relaxed mb-5 flex-1",
+                "text-[13.5px] text-[var(--text-secondary)] leading-[1.75] flex-1",
                 !isExpanded && "line-clamp-2"
-              )}>
+              )}
+              style={{ marginBottom: '28px' }}
+              >
                 {msg.description}
               </p>
 
               {/* Expanded XML Display */}
               {isExpanded && (
-                <div className="my-4 animate-fade-in">
+                <div className="my-5 animate-fade-in">
                   <div className="flex items-center justify-between px-4 py-2 bg-[var(--surface-navy)] border-t border-l border-r border-[var(--border-slate)] rounded-t-lg">
                     <span className="text-[10px] font-mono font-semibold" style={{ color: 'var(--text-tertiary)' }}>
                       {msg.type}.xml
@@ -222,7 +226,7 @@ export default function PayloadLibrary() {
 
               {/* Action Buttons (when collapsed) */}
               {!isExpanded && (
-                <div className="flex items-center justify-end gap-2 border-t border-[var(--border-slate)] pt-4 mt-auto">
+                <div style={{ paddingTop: '24px', marginTop: '8px' }} className="flex items-center justify-end gap-2.5 border-t border-[var(--border-slate)]">
                   <button
                     onClick={() => handleCopy(msg.id, msg.rawXml)}
                     className="btn btn-secondary text-[11px] py-1.5 px-3 flex items-center gap-1.5"

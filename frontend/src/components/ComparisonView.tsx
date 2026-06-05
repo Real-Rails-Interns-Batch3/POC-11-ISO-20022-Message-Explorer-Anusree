@@ -62,24 +62,17 @@ export default function ComparisonView() {
   }
 
   return (
-    <div className="flex flex-col gap-6 animate-fade-in">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-[17px] font-semibold text-[var(--text-primary)] tracking-wide">
-          Legacy SWIFT MT <span className="text-[var(--text-secondary)] font-normal mx-1">↔</span> ISO 20022 MX
-        </h2>
-        <p className="text-[13px] text-[var(--text-secondary)] max-w-4xl leading-relaxed">
-          The 2025 SWIFT MT retirement collapses free-form telex tags into structured, typed fields. Each row shows how a legacy <span className="text-[var(--accent-cyan)] font-mono">MT103</span> tag maps to its modern equivalent.
-        </p>
-      </div>
+    <div className="flex flex-col gap-10 animate-fade-in">
 
-      <div className="w-full">
-        <table className="w-full text-left text-[13px]">
+
+      <div className="w-full mt-4">
+        <table className="w-full text-left text-[13px] border-separate" style={{ borderSpacing: '0 12px' }}>
           <thead>
             <tr className="border-b border-[var(--border-slate)] text-[10px] font-mono tracking-widest text-[var(--text-tertiary)] uppercase">
-              <th className="py-3 font-semibold">MT TAG</th>
-              <th className="py-3 font-semibold">LEGACY MEANING</th>
-              <th className="py-3 font-semibold">ISO 20022 PATH</th>
-              <th className="py-3 font-semibold">WHAT CHANGED</th>
+              <th className="py-4 pb-5 font-semibold">MT TAG</th>
+              <th className="py-4 pb-5 font-semibold">LEGACY MEANING</th>
+              <th className="py-4 pb-5 font-semibold">ISO 20022 PATH</th>
+              <th className="py-4 pb-5 font-semibold">WHAT CHANGED</th>
             </tr>
           </thead>
           <tbody className="font-sans">
@@ -97,7 +90,7 @@ export default function ComparisonView() {
                     )}
                   >
                     {/* MT TAG */}
-                    <td className="py-4 font-mono text-[var(--accent-cyan)] text-[12px] font-medium w-[100px]">
+                    <td className="py-7 font-mono text-[var(--accent-cyan)] text-[12px] font-medium w-[100px]">
                       {isNew ? (
                         <span className="badge badge-indigo">NEW</span>
                       ) : (
@@ -106,12 +99,12 @@ export default function ComparisonView() {
                     </td>
 
                     {/* LEGACY MEANING */}
-                    <td className="py-4 text-[var(--text-primary)] w-[240px]">
+                    <td className="py-7 text-[var(--text-primary)] w-[240px]">
                       {row.mtName}
                     </td>
 
                     {/* ISO PATH */}
-                    <td className="py-4">
+                    <td className="py-7">
                       <div className="flex flex-col gap-0.5">
                         <span className="font-mono text-[12px] text-[var(--accent-indigo)]">
                           {row.mxElement}
@@ -123,7 +116,7 @@ export default function ComparisonView() {
                     </td>
 
                     {/* WHAT CHANGED */}
-                    <td className="py-4 text-[var(--text-secondary)] text-[12px] leading-relaxed max-w-[340px]">
+                    <td className="py-7 text-[var(--text-secondary)] text-[12.5px] leading-[1.75] max-w-[360px]">
                       {row.keyDifference}
                     </td>
                   </tr>
@@ -131,8 +124,8 @@ export default function ComparisonView() {
                   {/* ── Expanded row: MT / MX examples side-by-side ── */}
                   {isExpanded && (
                     <tr style={{ background: 'var(--bg-obsidian)' }}>
-                      <td colSpan={4} className="px-10 py-6 border-b border-[rgba(255,255,255,0.05)]">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+                      <td colSpan={4} className="px-10 py-8 border-b border-[rgba(255,255,255,0.05)]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 animate-fade-in">
                           {/* MT Example */}
                           <div>
                             <span

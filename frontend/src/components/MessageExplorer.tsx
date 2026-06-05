@@ -291,12 +291,13 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
             placeholder="Search messages..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full h-10 pl-10 pr-4 bg-[var(--surface-navy)] border border-[var(--border-slate)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent-cyan)] transition-colors shadow-sm"
+            className="w-full pl-10 pr-4 bg-[var(--surface-navy)] border border-[var(--border-slate)] rounded-lg text-sm text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent-cyan)] transition-colors shadow-sm"
+            style={{ height: '48px' }}
           />
         </div>
 
         {/* Message cards */}
-        <div className="flex-1 overflow-y-auto space-y-5 pr-2">
+        <div className="flex-1 overflow-y-auto pr-2" style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
           {listLoading ? (
             <>
               <MessageCardSkeleton />
@@ -315,12 +316,12 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
                 key={msg.id}
                 onClick={() => handleSelect(msg.id)}
                 className={cn(
-                  'glass-card glass-card-hover w-full text-left p-5 transition-all duration-200',
+                  'glass-card glass-card-hover w-full text-left p-6 transition-all duration-200',
                   selectedId === msg.id && 'cyan-glow border-[var(--accent-cyan)]'
                 )}
               >
                 {/* Header row */}
-                <div className="flex items-center gap-2 mb-3 flex-wrap">
+                <div style={{ marginBottom: '16px' }} className="flex items-center gap-2 flex-wrap">
                   <span className="badge badge-cyan text-[10px]">{msg.type}</span>
                   <span className={cn('badge', getNetworkColor(msg.network))}>
                     {msg.network}
@@ -336,7 +337,7 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
                 </div>
 
                 {/* Title */}
-                <h4 className="text-sm font-medium text-[var(--text-primary)]">
+                <h4 style={{ marginBottom: '10px' }} className="text-sm font-medium text-[var(--text-primary)]">
                   {msg.title}
                 </h4>
               </button>
@@ -352,8 +353,8 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
         ) : selectedMessage ? (
           <>
             {/* Detail header */}
-            <div className="p-5 border-b border-[var(--border-slate)]">
-              <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <div className="p-6 border-b border-[var(--border-slate)]">
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
                 <span className="badge badge-cyan">{selectedMessage.type}</span>
                 <span
                   className={cn(
@@ -372,16 +373,16 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
                   {selectedMessage.status}
                 </span>
               </div>
-              <h3 className="text-base font-semibold text-[var(--text-primary)]">
+              <h3 className="text-[16px] font-semibold text-[var(--text-primary)]">
                 {selectedMessage.title}
               </h3>
-              <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+              <p className="text-[13px] text-[var(--text-secondary)] mt-2 leading-[1.75]">
                 {selectedMessage.description}
               </p>
             </div>
 
             {/* Tab navigation */}
-            <div className="px-5 pt-4">
+            <div className="px-6 pt-5">
               <div className="tab-nav inline-flex">
                 {tabs.map((tab) => (
                   <button
@@ -396,7 +397,7 @@ export default function MessageExplorer({ filters }: MessageExplorerProps) {
             </div>
 
             {/* Tab content */}
-            <div className="flex-1 overflow-y-auto p-5">
+            <div className="flex-1 overflow-y-auto p-6">
               {/* Tree View Tab */}
               {activeTab === 'tree' && (
                 <div className="animate-fade-in">

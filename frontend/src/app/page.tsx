@@ -97,9 +97,7 @@ export default function Home() {
           <h1 className="font-semibold tracking-wider text-sm">
             <span className="text-white">REAL RAILS</span> <span className="text-[var(--text-tertiary)] mx-1">/</span> <span className="text-[var(--text-secondary)]">ISO 20022 Message Explorer</span>
           </h1>
-          <span className="ml-4 px-4 py-1.5 rounded-md bg-[var(--surface-navy)] border border-[var(--border-slate)] text-[var(--text-secondary)] text-xs tracking-wide font-medium">
-            PoC - 11
-          </span>
+
         </div>
         <div className="flex items-center gap-6 text-[var(--text-secondary)] text-xs font-mono">
           <span className="hover:text-[var(--text-primary)] cursor-pointer text-[var(--text-tertiary)] transition-colors">Rail · Payments</span>
@@ -124,7 +122,7 @@ export default function Home() {
         <main className="w-full lg:w-[70%] lg:min-w-[700px] flex flex-col h-full border-b lg:border-b-0 lg:border-r border-[var(--border-slate)] overflow-hidden">
           
           {/* Message Cards Scroll Container */}
-          <div className="px-6 pt-4 pb-5 shrink-0 flex gap-3 overflow-x-auto border-b border-[var(--border-slate)]">
+          <div className="px-6 shrink-0 flex gap-3 overflow-x-auto border-b border-[var(--border-slate)]" style={{ paddingTop: '16px', paddingBottom: '20px' }}>
             {messageCards.map((card) => (
               <div
                 key={card.id}
@@ -170,7 +168,7 @@ export default function Home() {
 
 
           {/* Tabs */}
-          <div className="px-6 flex gap-6 border-b border-[var(--border-slate)] shrink-0 overflow-x-auto">
+          <div className="px-8 flex gap-10 border-b border-[var(--border-slate)] shrink-0 overflow-x-auto" style={{ marginTop: '12px' }}>
             {tabs.map((tab) => {
               const isActive = activeTab === tab;
               return (
@@ -178,11 +176,12 @@ export default function Home() {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={cn(
-                    'py-3 text-[13px] font-medium border-b-2 transition-colors cursor-pointer whitespace-nowrap',
+                    'text-[13px] font-medium border-b-2 transition-colors cursor-pointer whitespace-nowrap',
                     isActive
                       ? 'border-[var(--accent-cyan)] text-[var(--accent-cyan)]'
                       : 'border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   )}
+                  style={{ paddingTop: '16px', paddingBottom: '16px' }}
                 >
                   {tab}
                 </button>
@@ -191,7 +190,7 @@ export default function Home() {
           </div>
 
           {/* Active Content Stage */}
-          <div className="flex-1 overflow-y-auto px-4 lg:px-6 py-6 bg-[rgba(3,7,18,0.3)]">
+          <div className="flex-1 overflow-y-auto px-6 lg:px-10 bg-[rgba(3,7,18,0.3)]" style={{ paddingTop: '32px', paddingBottom: '32px' }}>
             {activeTab === 'Message Tree' && <MessageExplorer filters={filters} />}
             {activeTab === 'Raw JSON' && <PayloadLibrary />}
             {activeTab === 'MT ↔ MX Compare' && <ComparisonView />}
